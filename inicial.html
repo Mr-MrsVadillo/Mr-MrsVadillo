@@ -3,102 +3,104 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Stefa & Juanpa</title>
 
 <style>
 
 *{
-box-sizing:border-box;
 margin:0;
 padding:0;
+box-sizing:border-box;
 }
 
 body{
-font-family:Montserrat,sans-serif;
-background:#fff;
 overflow:hidden;
+font-family:'Montserrat',sans-serif;
 }
+
+/* FOTO COMPLETA */
 
 .cover{
+position:relative;
 height:100vh;
-display:flex;
-flex-direction:column;
 }
 
-/* FOTO */
-
-.hero-photo{
-flex:1;
-}
-
-.hero-photo img{
+.cover img{
 width:100%;
 height:100%;
 object-fit:cover;
 display:block;
 }
 
-/* FRANJA */
+/* CONTENIDO SOBRE LA FRANJA */
 
-.invite-strip{
+.overlay{
 
-background:#103825;
+position:absolute;
 
-color:white;
+left:0;
+right:0;
 
-padding:38px 24px;
-
-text-align:center;
+/* AJUSTA ESTE VALOR */
+bottom:16vh;
 
 display:flex;
 
 flex-direction:column;
 
-gap:12px;
+align-items:center;
+
+color:white;
+
+padding:0 30px;
+
+text-align:center;
 
 }
 
 .invite-label{
 
-font-size:18px;
+font-size:14px;
 
-letter-spacing:2px;
+letter-spacing:3px;
 
 opacity:.9;
+
+margin-bottom:10px;
 
 }
 
 #nombre{
 
-font-size:2.3rem;
-
-color:#E9DFC7;
+font-size:2rem;
 
 font-weight:600;
+
+color:#F4E7D2;
 
 }
 
 #cupos{
 
-font-size:1.1rem;
+margin-top:10px;
 
-opacity:.9;
+font-size:18px;
+
+opacity:.95;
 
 }
 
 /* BOTONES */
 
-.buttons{
+.actions{
 
 display:flex;
 
-flex-direction:column;
-
 gap:12px;
 
-margin-top:12px;
+margin-top:28px;
 
 }
 
@@ -106,17 +108,19 @@ margin-top:12px;
 
 border:none;
 
-padding:15px;
+padding:14px 20px;
 
 border-radius:999px;
 
-font-size:16px;
-
 cursor:pointer;
+
+font-size:14px;
+
+font-weight:700;
 
 }
 
-.music{
+.sound{
 
 background:#7a843d;
 
@@ -124,34 +128,12 @@ color:white;
 
 }
 
-.silent{
+.skip{
 
 background:white;
 
 color:#103825;
 
-}
-
-.enter{
-
-display:none;
-
-background:#7a843d;
-
-color:white;
-
-text-decoration:none;
-
-padding:15px;
-
-border-radius:999px;
-
-font-weight:600;
-
-}
-
-.enter.show{
-display:block;
 }
 
 </style>
@@ -162,11 +144,9 @@ display:block;
 
 <div class="cover">
 
-<div class="hero-photo">
 <img src="foto1.jpeg">
-</div>
 
-<div class="invite-strip">
+<div class="overlay">
 
 <div class="invite-label">
 ESTÁN INVITADOS
@@ -180,23 +160,15 @@ Invitado Especial
 Cupo/s: —
 </div>
 
-<div class="buttons">
+<div class="actions">
 
-<button id="play" class="btn music">
-🎵 Entrar con música
+<button class="btn sound" id="play">
+🔊 Escuchar
 </button>
 
-<button id="skip" class="btn silent">
-🔇 Entrar sin música
+<button class="btn skip" id="skip">
+🔇 Continuar
 </button>
-
-<a
-id="enterBtn"
-class="enter"
-href="#"
->
-Ver invitación →
-</a>
 
 </div>
 
@@ -209,71 +181,38 @@ Ver invitación →
 <source src="yotetodo.MP3" type="audio/mpeg">
 </audio>
 
+
 <script>
 
-/* INVITADOS */
-
-const token=
-new URLSearchParams(
-location.search
-).get("code");
+const token =
+new URLSearchParams(location.search)
+.get("code");
 
 fetch("invitados.json")
-
 .then(r=>r.json())
-
 .then(data=>{
 
-if(!token||!data[token]){
+if(!data[token]) return;
 
-document.body.innerHTML=
-`
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-">
+nombre.innerText =
+data[token].nombre;
 
-<div>
-
-<h1>
-Invitación no válida
-</h1>
-
-</div>
-
-</div>
-`;
-
-return;
-
-}
-
-const invitado=data[token];
-
-nombre.innerText=
-invitado.nombre;
-
-cupos.innerText=
-`Cupo/s: ${invitado.cupos}`;
-
-enterBtn.href=
-`invitacion2.html?code=${token}`;
+cupos.innerText =
+`Cupo/s: ${data[token].cupos}`;
 
 });
 
-
-/* AUDIO */
-
-const music=
+const music =
 document.getElementById("music");
 
-const enter=
-document.getElementById("enterBtn");
+function entrar(){
 
-play.onclick=async()=>{
+location.href =
+`invitacion2.html?code=${token}`;
+
+}
+
+play.onclick = async()=>{
 
 try{
 
@@ -281,27 +220,24 @@ music.volume=.6;
 
 await music.play();
 
-}catch(e){}
+setTimeout(
+entrar,
+800
+);
 
-mostrarBoton();
+}catch{
+
+entrar();
+
+}
 
 };
 
 skip.onclick=()=>{
 
-mostrarBoton();
+entrar();
 
 };
-
-function mostrarBoton(){
-
-play.style.display="none";
-
-skip.style.display="none";
-
-enter.classList.add("show");
-
-}
 
 </script>
 
