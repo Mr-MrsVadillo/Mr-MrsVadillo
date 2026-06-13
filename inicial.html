@@ -1,174 +1,272 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>Invitación</title>
+<title>Stefa & Juanpa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+<link
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
 rel="stylesheet">
 
 <style>
 
 @font-face{
-    font-family:'Easter Onion';
-    src:url('Easter%20Onion.otf') format('opentype');
+font-family:'Easter Onion';
+src:url('Easter%20Onion.otf')
+format('opentype');
+}
+
+@font-face{
+font-family:'TIMESS';
+src:url('TIMESS__.ttf')
+format('truetype');
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    overflow:hidden;
-    font-family:'Montserrat';
+
+font-family:'Montserrat';
+
+overflow:hidden;
+
+background:#000;
 }
 
 .cover{
-    position:relative;
-    height:100vh;
+
+position:relative;
+
+height:100vh;
+
+width:100%;
 }
 
 .cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
 }
 
-/* CONTENIDO SOBRE LA FRANJA */
+
+/* TEXTO SOBRE FRANJA */
+
 .overlay{
 
-    position:absolute;
+position:absolute;
 
-    left:50%;
+left:50%;
 
-    bottom:14%;
+bottom:9%;
 
-    transform:translateX(-50%);
+transform:translateX(-50%);
 
-    width:90%;
+width:100%;
 
-    text-align:center;
+max-width:520px;
 
-    color:#E8E2CF;
+padding:0 40px;
+
+text-align:center;
+
+color:#E8E2CF;
+
 }
 
-.label{
-    letter-spacing:4px;
-    font-size:.9rem;
 
-    margin-bottom:10px;
+.label{
+
+letter-spacing:4px;
+
+font-size:.9rem;
+
+margin-bottom:14px;
+
+opacity:.9;
+
+}
+
+
+#nombre{
+
+font-family:'Easter Onion';
+
+font-size:3.1rem;
+
+line-height:1;
+
+margin-bottom:12px;
+
+}
+
+
+#cupos{
+
+font-family:'TIMESS';
+
+font-size:1.2rem;
+
+margin-bottom:34px;
+
+}
+
+
+.buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:14px;
+
+flex-wrap:wrap;
+
+}
+
+
+.btn{
+
+border:none;
+
+padding:15px 28px;
+
+border-radius:999px;
+
+font-size:1rem;
+
+font-weight:700;
+
+cursor:pointer;
+
+min-width:160px;
+
+transition:.2s;
+
+}
+
+
+.btn:active{
+
+transform:scale(.97);
+
+}
+
+
+.sound{
+
+background:#7A843D;
+
+color:white;
+
+}
+
+
+.continue{
+
+background:white;
+
+color:#103825;
+
+}
+
+
+@media(max-width:480px){
+
+.overlay{
+
+bottom:10%;
+
+padding:0 25px;
+
 }
 
 #nombre{
-    font-family:'Easter Onion';
 
-    font-size:3rem;
+font-size:2.2rem;
 
-    margin-bottom:8px;
 }
 
 #cupos{
 
-    font-size:1.3rem;
+font-size:1rem;
 
-    margin-bottom:35px;
-}
-
-.buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:14px;
-
-    flex-wrap:wrap;
 }
 
 .btn{
 
-    border:none;
+padding:14px 20px;
 
-    padding:16px 28px;
+font-size:.95rem;
 
-    border-radius:999px;
+min-width:140px;
 
-    font-size:1rem;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    min-width:150px;
-}
-
-.sound{
-    background:#7A843D;
-    color:white;
-}
-
-.continue{
-    background:white;
-    color:#103825;
-}
-
-.btn:active{
-    transform:scale(.97);
-}
-
-@media(max-width:480px){
-
-#nombre{
-    font-size:2.2rem;
-}
-
-#cupos{
-    font-size:1rem;
-}
-
-.overlay{
-    bottom:12%;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="cover">
 
-<img src="foto1.jpeg">
+<img src="foto-portada.jpg">
 
 <div class="overlay">
 
 <div class="label">
+
 ESTÁN INVITADOS
+
 </div>
+
 
 <div id="nombre">
+
 Invitado Especial
+
 </div>
 
+
 <div id="cupos">
+
 Cupo/s: 1
+
 </div>
+
 
 <div class="buttons">
 
-<button class="btn sound"
+<button
+class="btn sound"
 onclick="entrarConMusica()">
+
 🔊 Escuchar
+
 </button>
 
-<button class="btn continue"
+
+<button
+class="btn continue"
 onclick="entrarSinMusica()">
+
 🔇 Continuar
+
 </button>
 
 </div>
@@ -178,60 +276,96 @@ onclick="entrarSinMusica()">
 </div>
 
 
-<audio id="music">
-<source src="yotetodo.MP3" type="audio/mpeg">
+<audio id="bgMusic">
+
+<source
+src="yotetodo.MP3"
+type="audio/mpeg">
+
 </audio>
+
 
 
 <script>
 
 const token =
-new URLSearchParams(location.search)
-.get("code");
+new URLSearchParams(
+location.search
+).get("code");
 
-let nombreInvitado="";
-let cupos=1;
 
 fetch("invitados.json")
+
 .then(r=>r.json())
+
 .then(data=>{
 
-if(!token || !data[token]){
+if(
+!token ||
+!data[token]
+){
 
 document.body.innerHTML=`
+
 <div style="
+
 height:100vh;
+
 display:flex;
+
 align-items:center;
+
 justify-content:center;
-font-size:22px;">
+
+color:white;
+
+font-size:22px;
+
+">
+
 Invitación no válida
-</div>`;
+
+</div>
+
+`;
 
 return;
 
 }
 
-nombreInvitado=data[token].nombre;
-cupos=data[token].cupos;
+const invitado =
+data[token];
 
-document.getElementById("nombre")
-.innerText=nombreInvitado;
+document
+.getElementById(
+"nombre"
+)
+.innerText =
+invitado.nombre;
 
-document.getElementById("cupos")
-.innerText=`Cupo/s: ${cupos}`;
+document
+.getElementById(
+"cupos"
+)
+.innerText =
+`Cupo/s: ${invitado.cupos}`;
 
 });
 
 
+
 function entrarConMusica(){
 
-const audio=
-document.getElementById("music");
+const audio =
+document
+.getElementById(
+"bgMusic"
+);
 
 audio.volume=.6;
 
 audio.play()
+
 .then(()=>{
 
 sessionStorage.setItem(
@@ -242,9 +376,17 @@ sessionStorage.setItem(
 window.location=
 `invitacion2.html?code=${token}`;
 
+})
+
+.catch(()=>{
+
+window.location=
+`invitacion2.html?code=${token}`;
+
 });
 
 }
+
 
 
 function entrarSinMusica(){
@@ -261,4 +403,5 @@ window.location=
 </script>
 
 </body>
+
 </html>
