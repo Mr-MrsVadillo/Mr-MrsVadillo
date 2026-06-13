@@ -26,15 +26,15 @@ body{
     background-color: #f4f6f4;
 }
 
-/* LA IMAGEN OCUPA TODO EL FONDO DE LA PANTALLA */
+/* CONTENEDOR PRINCIPAL QUE MUESTRA LA IMAGEN DE FONDO COMPLETA */
 .cover {
     position: relative;
     height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center; /* Centrado vertical */
-    justify-content: center; /* Centrado horizontal */
-    padding: 20px;
+    align-items: center; /* Centrado vertical absoluto */
+    justify-content: center; /* Centrado horizontal absoluto */
+    padding: 40px 20px; /* Margen de seguridad para pantallas pequeñas */
 }
 
 .cover-bg {
@@ -43,109 +43,112 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Garantiza que la imagen llene el fondo de manera armoniosa */
     z-index: 1;
 }
 
-/* TARJETA BLANCA SUPERPUESTA (Justificada igual que invitacion 2) */
+/* TARJETA BLANCA SLIM (Copiando exactamente las proporciones de la segunda imagen) */
 .main-card {
     position: relative;
-    z-index: 2; /* Por encima de la imagen de fondo */
-    max-width: 460px;
+    z-index: 2;
+    max-width: 440px; /* Reducido para imitar el formato estilizado y esbelto */
     width: 100%;
-    background: rgba(255, 255, 255, 0.95); /* Blanco limpio con un toque mínimo de transparencia */
-    border-radius: 28px; /* Bordes redondeados idénticos a tu referencia */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); /* Sombra elegante para dar profundidad */
-    padding: 50px 30px;
+    background: #ffffff; /* Blanco sólido y limpio */
+    border-radius: 24px; /* Curvatura suavizada premium */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Sombra difuminada idéntica a la referencia */
+    
+    /* Márgenes internos compactos para equilibrar el espacio del texto */
+    padding: 60px 35px; 
     text-align: center;
-    backdrop-filter: blur(8px); /* Efecto difuminado premium tras la tarjeta */
 }
 
 .label {
     letter-spacing: 4px;
-    font-size: .85rem;
+    font-size: .8rem;
     margin-bottom: 15px;
-    color: #7a843d; /* Verde oliva para los textos secundarios */
-    font-weight: 500;
+    color: #7a843d;
+    font-weight: 600;
 }
 
 #nombre {
     font-family: 'Easter Onion';
-    font-size: 3.2rem;
-    margin-bottom: 10px;
-    color: #2d4d42; /* Verde oscuro elegante */
+    font-size: 2.8rem; /* Tamaño balanceado para no saturar la tarjeta slim */
+    margin-bottom: 8px;
+    color: #2d4d42;
     line-height: 1.1;
 }
 
 #cupos {
-    font-size: 1.1rem;
-    margin-bottom: 35px;
+    font-size: 1rem;
+    margin-bottom: 40px; /* Espaciado amplio antes de los botones */
     color: #666666;
-    font-weight: 300;
+    font-weight: 400;
 }
 
-/* CONTENEDOR DE BOTONES */
+/* CONTENEDOR DE BOTONES HORIZONTALES */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
+    gap: 12px;
 }
 
-/* BOTONES ESTILO OLIVA REDONDEADOS */
+/* BOTONES REDONDEADOS */
 .btn {
     border: none;
-    padding: 15px 28px;
-    border-radius: 999px; /* Totalmente ovalados como en la referencia */
-    font-size: 0.9rem;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-size: 0.8rem;
     font-weight: 700;
-    text-transform: uppercase; /* Estilo profesional */
+    text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    min-width: 160px;
-    transition: .2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    flex: 1; /* Hace que ambos botones tengan exactamente el mismo ancho simétrico */
+    transition: all .2s ease;
 }
 
 .sound {
-    background: #7A843D; /* Verde oliva de la imagen guía */
+    background: #7A843D;
     color: white;
+    box-shadow: 0 4px 10px rgba(122, 132, 61, 0.2);
 }
 
 .sound:hover {
     background: #636b32;
+    transform: translateY(-1px);
 }
 
 .continue {
-    background: #f4f6f4;
+    background: #f8f9f8;
     color: #2d4d42;
     border: 1px solid #e2e8e2;
 }
 
 .continue:hover {
-    background: #e2e8e2;
+    background: #eeeeee;
+    transform: translateY(-1px);
 }
 
 .btn:active {
-    transform: scale(.96);
+    transform: scale(.97);
 }
 
-/* RESPONSIVE PARA CELULARES */
+/* COMPORTAMIENTO EN MÓVILES (Mantiene las proporciones verticales de la tarjeta) */
 @media(max-width:480px){
+    .cover {
+        padding: 20px 15px;
+    }
     .main-card {
-        padding: 40px 20px;
+        padding: 50px 25px; /* Ajuste sutil para conservar el formato vertical */
     }
     #nombre {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
     }
-    #cupos {
-        font-size: 1rem;
-        margin-bottom: 25px;
+    .buttons {
+        gap: 10px;
     }
     .btn {
-        padding: 13px 22px;
-        font-size: .85rem;
-        min-width: 130px;
+        padding: 12px 15px;
+        font-size: .75rem;
     }
 }
 </style>
@@ -154,10 +157,10 @@ body{
 <body>
 
 <div class="cover">
-    <!-- Imagen de fondo de la pantalla -->
-    <img src="foto 1.jpeg" class="cover-bg">
+    <!-- Tu foto de fondo (foto1.jpeg) se mantendrá completa y proporcionada detrás -->
+    <img src="foto1.jpeg" class="cover-bg">
 
-    <!-- Tarjeta flotante centrada -->
+    <!-- Tarjeta vertical estilizada idéntica a tu segunda referencia -->
     <div class="main-card">
         <div class="label">ESTÁN INVITADOS</div>
         <div id="nombre">Invitado Especial</div>
@@ -210,7 +213,6 @@ function entrarConMusica(){
         window.location=`invitacion2.html?code=${token}`;
     })
     .catch(()=>{
-        // Por si el navegador bloquea el autoplay tras el click
         window.location=`invitacion2.html?code=${token}`;
     });
 }
