@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Stefa & Juanpa</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Montserrat,sans-serif;
+background:#fff;
+overflow:hidden;
+}
+
+.cover{
+height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* FOTO */
+
+.hero-photo{
+flex:1;
+}
+
+.hero-photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+/* FRANJA */
+
+.invite-strip{
+
+background:#103825;
+
+color:white;
+
+padding:38px 24px;
+
+text-align:center;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.invite-label{
+
+font-size:18px;
+
+letter-spacing:2px;
+
+opacity:.9;
+
+}
+
+#nombre{
+
+font-size:2.3rem;
+
+color:#E9DFC7;
+
+font-weight:600;
+
+}
+
+#cupos{
+
+font-size:1.1rem;
+
+opacity:.9;
+
+}
+
+/* BOTONES */
+
+.buttons{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+margin-top:12px;
+
+}
+
+.btn{
+
+border:none;
+
+padding:15px;
+
+border-radius:999px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+.music{
+
+background:#7a843d;
+
+color:white;
+
+}
+
+.silent{
+
+background:white;
+
+color:#103825;
+
+}
+
+.enter{
+
+display:none;
+
+background:#7a843d;
+
+color:white;
+
+text-decoration:none;
+
+padding:15px;
+
+border-radius:999px;
+
+font-weight:600;
+
+}
+
+.enter.show{
+display:block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="cover">
+
+<div class="hero-photo">
+<img src="foto-portada.jpg">
+</div>
+
+<div class="invite-strip">
+
+<div class="invite-label">
+ESTÁN INVITADOS
+</div>
+
+<div id="nombre">
+Invitado Especial
+</div>
+
+<div id="cupos">
+Cupo/s: —
+</div>
+
+<div class="buttons">
+
+<button id="play" class="btn music">
+🎵 Entrar con música
+</button>
+
+<button id="skip" class="btn silent">
+🔇 Entrar sin música
+</button>
+
+<a
+id="enterBtn"
+class="enter"
+href="#"
+>
+Ver invitación →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<audio id="music" loop>
+<source src="yotetodo.MP3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* INVITADOS */
+
+const token=
+new URLSearchParams(
+location.search
+).get("code");
+
+fetch("invitados.json")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+if(!token||!data[token]){
+
+document.body.innerHTML=
+`
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+">
+
+<div>
+
+<h1>
+Invitación no válida
+</h1>
+
+</div>
+
+</div>
+`;
+
+return;
+
+}
+
+const invitado=data[token];
+
+nombre.innerText=
+invitado.nombre;
+
+cupos.innerText=
+`Cupo/s: ${invitado.cupos}`;
+
+enterBtn.href=
+`invitacion2.html?code=${token}`;
+
+});
+
+
+/* AUDIO */
+
+const music=
+document.getElementById("music");
+
+const enter=
+document.getElementById("enterBtn");
+
+play.onclick=async()=>{
+
+try{
+
+music.volume=.6;
+
+await music.play();
+
+}catch(e){}
+
+mostrarBoton();
+
+};
+
+skip.onclick=()=>{
+
+mostrarBoton();
+
+};
+
+function mostrarBoton(){
+
+play.style.display="none";
+
+skip.style.display="none";
+
+enter.classList.add("show");
+
+}
+
+</script>
+
+</body>
+
+</html>
