@@ -1,407 +1,225 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Erick&Stefany</title>
+<title>Bienvenidos | Invitación</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 @font-face{
-font-family:'Easter Onion';
-src:url('Easter%20Onion.otf')
-format('opentype');
-}
-
-@font-face{
-font-family:'TIMESS';
-src:url('TIMESS__.ttf')
-format('truetype');
+    font-family:'Easter Onion';
+    src:url('Easter%20Onion.otf') format('opentype');
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-
-font-family:'Montserrat';
-
-overflow:hidden;
-
-background:#000;
+    overflow:hidden;
+    font-family:'Montserrat', sans-serif;
+    background-color: #f4f6f4;
 }
 
-.cover{
-
-position:relative;
-
-height:100vh;
-
-width:100%;
+/* LA IMAGEN OCUPA TODO EL FONDO DE LA PANTALLA */
+.cover {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    padding: 20px;
 }
 
-.cover img{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-display:block;
+.cover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
 
-
-/* TEXTO SOBRE FRANJA */
-
-.overlay{
-
-position:absolute;
-
-left:50%;
-
-bottom:9%;
-
-transform:translateX(-50%);
-
-width:100%;
-
-max-width:520px;
-
-padding:0 40px;
-
-text-align:center;
-
-color:#E8E2CF;
-
+/* TARJETA BLANCA SUPERPUESTA (Justificada igual que invitacion 2) */
+.main-card {
+    position: relative;
+    z-index: 2; /* Por encima de la imagen de fondo */
+    max-width: 460px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Blanco limpio con un toque mínimo de transparencia */
+    border-radius: 28px; /* Bordes redondeados idénticos a tu referencia */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); /* Sombra elegante para dar profundidad */
+    padding: 50px 30px;
+    text-align: center;
+    backdrop-filter: blur(8px); /* Efecto difuminado premium tras la tarjeta */
 }
 
-
-.label{
-
-letter-spacing:4px;
-
-font-size:.9rem;
-
-margin-bottom:14px;
-
-opacity:.9;
-
+.label {
+    letter-spacing: 4px;
+    font-size: .85rem;
+    margin-bottom: 15px;
+    color: #7a843d; /* Verde oliva para los textos secundarios */
+    font-weight: 500;
 }
 
-
-#nombre{
-
-font-family:'Easter Onion';
-
-font-size:3.1rem;
-
-line-height:1;
-
-margin-bottom:12px;
-
+#nombre {
+    font-family: 'Easter Onion';
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+    color: #2d4d42; /* Verde oscuro elegante */
+    line-height: 1.1;
 }
 
-
-#cupos{
-
-font-family:'TIMESS';
-
-font-size:1.2rem;
-
-margin-bottom:34px;
-
+#cupos {
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    color: #666666;
+    font-weight: 300;
 }
 
-
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:14px;
-
-flex-wrap:wrap;
-
+/* CONTENEDOR DE BOTONES */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-
-.btn{
-
-border:none;
-
-padding:15px 28px;
-
-border-radius:999px;
-
-font-size:1rem;
-
-font-weight:700;
-
-cursor:pointer;
-
-min-width:160px;
-
-transition:.2s;
-
+/* BOTONES ESTILO OLIVA REDONDEADOS */
+.btn {
+    border: none;
+    padding: 15px 28px;
+    border-radius: 999px; /* Totalmente ovalados como en la referencia */
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase; /* Estilo profesional */
+    letter-spacing: 1px;
+    cursor: pointer;
+    min-width: 160px;
+    transition: .2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-
-.btn:active{
-
-transform:scale(.97);
-
+.sound {
+    background: #7A843D; /* Verde oliva de la imagen guía */
+    color: white;
 }
 
-
-.sound{
-
-background:#7A843D;
-
-color:white;
-
+.sound:hover {
+    background: #636b32;
 }
 
-
-.continue{
-
-background:white;
-
-color:#103825;
-
+.continue {
+    background: #f4f6f4;
+    color: #2d4d42;
+    border: 1px solid #e2e8e2;
 }
 
+.continue:hover {
+    background: #e2e8e2;
+}
 
+.btn:active {
+    transform: scale(.96);
+}
+
+/* RESPONSIVE PARA CELULARES */
 @media(max-width:480px){
-
-.overlay{
-
-bottom:10%;
-
-padding:0 25px;
-
+    .main-card {
+        padding: 40px 20px;
+    }
+    #nombre {
+        font-size: 2.5rem;
+    }
+    #cupos {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    .btn {
+        padding: 13px 22px;
+        font-size: .85rem;
+        min-width: 130px;
+    }
 }
-
-#nombre{
-
-font-size:2.2rem;
-
-}
-
-#cupos{
-
-font-size:1rem;
-
-}
-
-.btn{
-
-padding:14px 20px;
-
-font-size:.95rem;
-
-min-width:140px;
-
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <div class="cover">
+    <!-- Imagen de fondo de la pantalla -->
+    <img src="foto 1.jpeg" class="cover-bg">
 
-<img src="foto1.jpeg">
+    <!-- Tarjeta flotante centrada -->
+    <div class="main-card">
+        <div class="label">ESTÁN INVITADOS</div>
+        <div id="nombre">Invitado Especial</div>
+        <div id="cupos">Cupo/s: 1</div>
 
-<div class="overlay">
-
-<div class="label">
-
-ESTÁN INVITADOS
-
+        <div class="buttons">
+            <button class="btn sound" onclick="entrarConMusica()">
+                🔊 Escuchar
+            </button>
+            <button class="btn continue" onclick="entrarSinMusica()">
+                ¼ Continuar
+            </button>
+        </div>
+    </div>
 </div>
 
-
-<div id="nombre">
-
-Invitado Especial
-
-</div>
-
-
-<div id="cupos">
-
-Cupo/s: 1
-
-</div>
-
-
-<div class="buttons">
-
-<button
-class="btn sound"
-onclick="entrarConMusica()">
-
-🔊 Escuchar
-
-</button>
-
-
-<button
-class="btn continue"
-onclick="entrarSinMusica()">
-
-🔇 Continuar
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<audio id="bgMusic">
-
-<source
-src="yotetodo.MP3"
-type="audio/mpeg">
-
+<audio id="music">
+    <source src="yotetodo.MP3" type="audio/mpeg">
 </audio>
 
-
-
 <script>
-
-const token =
-new URLSearchParams(
-location.search
-).get("code");
-
+const token = new URLSearchParams(location.search).get("code");
+let nombreInvitado="";
+let cupos=1;
 
 fetch("invitados.json")
-
 .then(r=>r.json())
-
 .then(data=>{
+    if(!token || !data[token]){
+        document.body.innerHTML=`
+        <div style="height:100vh; display:flex; align-items:center; justify-content:center; font-size:22px; background:#f4f6f4; color:#2d4d42;">
+        Invitación no válida
+        </div>`;
+        return;
+    }
 
-if(
-!token ||
-!data[token]
-){
+    nombreInvitado=data[token].nombre;
+    cupos=data[token].cupos;
 
-document.body.innerHTML=`
-
-<div style="
-
-height:100vh;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:white;
-
-font-size:22px;
-
-">
-
-Invitación no válida
-
-</div>
-
-`;
-
-return;
-
-}
-
-const invitado =
-data[token];
-
-document
-.getElementById(
-"nombre"
-)
-.innerText =
-invitado.nombre;
-
-document
-.getElementById(
-"cupos"
-)
-.innerText =
-`Cupo/s: ${invitado.cupos}`;
-
+    document.getElementById("nombre").innerText=nombreInvitado;
+    document.getElementById("cupos").innerText=`Cupo/s: ${cupos}`;
 });
-
-
 
 function entrarConMusica(){
-
-const audio =
-document
-.getElementById(
-"bgMusic"
-);
-
-audio.volume=.6;
-
-audio.play()
-
-.then(()=>{
-
-sessionStorage.setItem(
-"playMusic",
-"true"
-);
-
-window.location=
-`invitacion2.html?code=${token}`;
-
-})
-
-.catch(()=>{
-
-window.location=
-`invitacion2.html?code=${token}`;
-
-});
-
+    const audio=document.getElementById("music");
+    audio.volume=.6;
+    audio.play()
+    .then(()=>{
+        sessionStorage.setItem("playMusic", "true");
+        window.location=`invitacion2.html?code=${token}`;
+    })
+    .catch(()=>{
+        // Por si el navegador bloquea el autoplay tras el click
+        window.location=`invitacion2.html?code=${token}`;
+    });
 }
-
-
 
 function entrarSinMusica(){
-
-sessionStorage.removeItem(
-"playMusic"
-);
-
-window.location=
-`invitacion2.html?code=${token}`;
-
+    sessionStorage.removeItem("playMusic");
+    window.location=`invitacion2.html?code=${token}`;
 }
-
 </script>
 
 </body>
-
 </html>
