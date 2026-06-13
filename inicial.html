@@ -9,14 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* 1. TIPOGRAFÍAS DE TU INVITACION 2 */
 @font-face {
-    font-family: 'CormorantGaramond-VariableFont_wght';
-    src: url('CormorantGaramond-VariableFont_wght.ttf') format('opentype');
+    font-family: 'Easter Onion';
+    src: url('Easter%20Onion.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'TIMESS';
+    src: url('TIMESS__.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
     margin: 0;
@@ -29,109 +34,104 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: #fdfdfb;
     color: #2f3e3a;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* 2. ESTRUCTURA HERO COPIADA EXACTAMENTE DE TU INVITACION 2 */
+/* EL CONTENEDOR HERO AHORA LLEVA LA IMAGEN PARA QUE SE VEA COMPLETA EN WEB Y MÓVIL */
 .hero {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
-}
-
-.card {
-    max-width: 500px;
-    width: 100%;
-    border-radius: 20px;
-    
-    /* Reajuste de padding para evitar el scroll en móviles */
-    padding: 45vh 40px 40px; 
-    
-    /* Forzamos a que el contenedor no genere desbordamiento */
-    max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
     position: relative;
-    overflow: hidden;
-    background-color: white;
+    
+    background-image: url('foto 1.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
-/* PSEUDO-ELEMENTO PARA CREAR EL EFECTO MARCA DE AGUA (TRANSPARENCIA) */
-.card::before {
+/* MÁSCARA DIFUMINADA: Aplica la marca de agua transparente y suaviza toda la pantalla */
+.hero::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* Tu foto original */
-    background-image: url('foto 1.jpeg');
-    background-size: cover;
-    background-position: top;
-    
-    /* Control de transparencia: 0.3 es bastante transparente (tipo marca de agua) */
-    opacity: 0.35; 
-    
+    /* Fondo blanco semi-transparente para el efecto marca de agua */
+    background: rgba(255, 255, 255, 0.45); 
     z-index: 1;
 }
 
-/* Esto asegura que todo el contenido (textos y botones) se mantenga al 100% de opacidad */
-.card > * {
+/* CONTENEDOR FLOTANTE SIN BORDES MARCADOS */
+.card-wrapper {
+    max-width: 500px;
+    width: 100%;
+    /* Convertimos el padding a unidades de pantalla vh para evitar scrolls */
+    padding: 30vh 20px 10vh; 
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Asegura que los textos floten de forma nítida sobre la imagen */
-.card > * {
-    position: relative;
-    z-index: 2;
+/* EFECTO DE DIFUMINADO RADIAL DETRÁS DEL TEXTO (Reemplaza los bordes duros de la tarjeta) */
+.blur-glow {
+    position: absolute;
+    width: 120%;
+    height: 80%;
+    top: 25vh;
+    /* Crea un degradado radial ultra suave que se disuelve hacia los lados */
+    background: radial-gradient(circle, rgba(255,255,255,0.95) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+    filter: blur(20px); /* Difumina los extremos para que no existan líneas marcadas */
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* 4. ESTILOS DE TEXTO INTEGRADOS CON TU LÓGICA DE FUENTES */
+/* ESTILOS DE TEXTO E HIGHLIGHTS */
 .label {
     font-family: 'TIMESS', serif !important;
     letter-spacing: 4px;
     font-size: .85rem;
     margin-bottom: 15px;
-    color: #efeaca; 
+    color: #2d4d42;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 #nombre {
-    font-family: 'CormorantGaramond-Italic-VariableFont_wght.ttf', serif !important;
-    color: #efeaca; /* Tu verde oliva característico de invitacion 2 */
+    font-family: 'Easter Onion', serif !important;
+    color: #637c36;
     font-weight: 600;
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     line-height: 1.2;
     margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Mejora lectura sobre fondo claro */
 }
 
 #cupos {
-    font-family: 'CormorantGaramond-VariableFont_wght', serif !important;
-    color: #efeaca;
+    font-family: 'TIMESS', serif !important;
+    color: #2d4d42;
     font-weight: bold;
     font-size: 1.1rem;
     margin-bottom: 40px;
 }
 
-/* 5. CONTENEDOR DE BOTONES HORIZONTALES */
+/* BOTONES SIMÉTRICOS HORIZONTALES */
 .buttons {
     display: flex;
     justify-content: center;
     gap: 14px;
     width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
+    max-width: 400px;
 }
 
-/* BOTONES REDONDEADOS TIPO SUGERIR CANCIÓN */
 .btn {
     border: none;
     padding: 14px 20px;
@@ -141,14 +141,14 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    flex: 1; /* Distribución simétrica idéntica */
+    flex: 1;
     transition: all .2s ease;
 }
 
 .sound {
-    background-color: #7a843d; /* Tu paleta verde oliva */
+    background-color: #7a843d;
     color: white;
-    box-shadow: 0 4px 10px rgba(122, 132, 61, 0.2);
+    box-shadow: 0 4px 15px rgba(122, 132, 61, 0.3);
 }
 
 .sound:hover {
@@ -157,9 +157,10 @@ body {
 }
 
 .continue {
-    background: rgba(255, 255, 255, 0.9); /* Un sutil fondo blanco traslúcido para legibilidad */
+    background: rgba(255, 255, 255, 0.9);
     color: #2d4d42;
-    border: 1px solid #e2e8e2;
+    border: 1px solid rgba(45, 77, 66, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .continue:hover {
@@ -171,15 +172,17 @@ body {
     transform: scale(.96);
 }
 
-/* RESPONSIVE AJUSTADO */
+/* AJUSTES DE PADDING EN DISPOSITIVOS MÓVILES */
 @media (max-width: 480px) {
-    .card {
-        padding-top: 420px; /* Reducción leve para que en pantallas chicas no se desplace demasiado */
-        padding-left: 20px;
-        padding-right: 20px;
+    .card-wrapper {
+        padding-top: 35vh;
+    }
+    .blur-glow {
+        top: 30vh;
+        width: 140%;
     }
     #nombre {
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
     .btn {
         padding: 12px 15px;
@@ -191,10 +194,11 @@ body {
 
 <body>
 
-<!-- CONTENEDOR GENERAL COPIADO DE INVITACION 2 -->
 <div class="hero">
-    <div class="card">
+    <div class="card-wrapper">
+        <div class="blur-glow"></div>
         
+        <div class="label">ESTÁN INVITADOS</div>
         <div id="nombre">Invitado Especial</div>
         <div id="cupos">Cupo/s: 1</div>
 
@@ -206,7 +210,6 @@ body {
                 🔇 Continuar
             </button>
         </div>
-
     </div>
 </div>
 
@@ -250,7 +253,7 @@ function entrarConMusica(){
     });
 }
 
-function entrarSinMusica(){
+function entrarSanMusica(){
     sessionStorage.removeItem("playMusic");
     window.location=`invitacion2.html?code=${token}`;
 }
