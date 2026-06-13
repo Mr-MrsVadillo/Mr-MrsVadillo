@@ -9,146 +9,161 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-@font-face{
-    font-family:'Easter Onion';
-    src:url('Easter%20Onion.otf') format('opentype');
+/* 1. TIPOGRAFÍAS DE TU INVITACION 2 */
+@font-face {
+    font-family: 'Easter Onion';
+    src: url('Easter%20Onion.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@font-face {
+    font-family: 'TIMESS';
+    src: url('TIMESS__.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body{
-    overflow:hidden;
-    font-family:'Montserrat', sans-serif;
-    background-color: #f4f6f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* CONTENEDOR PRINCIPAL QUE MUESTRA LA IMAGEN DE FONDO COMPLETA */
-.cover {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fdfdfb;
+    color: #2f3e3a;
+    overflow-x: hidden;
+}
+
+/* 2. ESTRUCTURA HERO COPIADA EXACTAMENTE DE TU INVITACION 2 */
+.hero {
+    min-height: 100vh;
     display: flex;
-    align-items: center; /* Centrado vertical absoluto */
-    justify-content: center; /* Centrado horizontal absoluto */
-    padding: 40px 20px; /* Margen de seguridad para pantallas pequeñas */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
 }
 
-.cover-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* 3. TU CARD RECONFIGURADA: SIN CUADRO BLANCO, MÁRGENES DE INVITACION 2 Y FOTO 1 */
+.card {
+    max-width: 500px;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garantiza que la imagen llene el fondo de manera armoniosa */
-    z-index: 1;
+    border-radius: 20px;
+    
+    /* Configuración exacta de los paddings superiores e inferiores que me compartiste */
+    padding: 250px 40px 160px; 
+    
+    position: relative;
+    overflow: hidden;
+
+    /* REEMPLAZADA POR TU FOTO 1 DE PORTADA */
+    background-image: url('foto1.jpeg');
+    background-size: cover;
+    background-position: top;
+    background-color: white;
 }
 
-/* TARJETA BLANCA SLIM (Copiando exactamente las proporciones de la segunda imagen) */
-.main-card {
+/* Asegura que los textos floten de forma nítida sobre la imagen */
+.card > * {
     position: relative;
     z-index: 2;
-    max-width: 440px; /* Reducido para imitar el formato estilizado y esbelto */
-    width: 100%;
-    background: #ffffff; /* Blanco sólido y limpio */
-    border-radius: 24px; /* Curvatura suavizada premium */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Sombra difuminada idéntica a la referencia */
-    
-    /* Márgenes internos compactos para equilibrar el espacio del texto */
-    padding: 60px 35px; 
-    text-align: center;
 }
 
+/* 4. ESTILOS DE TEXTO INTEGRADOS CON TU LÓGICA DE FUENTES */
 .label {
+    font-family: 'TIMESS', serif !important;
     letter-spacing: 4px;
-    font-size: .8rem;
+    font-size: .85rem;
     margin-bottom: 15px;
-    color: #7a843d;
+    color: #2d4d42; /* Cambiado a verde oscuro para legibilidad directa sobre la foto */
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 #nombre {
-    font-family: 'Easter Onion';
-    font-size: 2.8rem; /* Tamaño balanceado para no saturar la tarjeta slim */
-    margin-bottom: 8px;
-    color: #2d4d42;
-    line-height: 1.1;
+    font-family: 'Easter Onion', serif !important;
+    color: #637c36; /* Tu verde oliva característico de invitacion 2 */
+    font-weight: 600;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
 }
 
 #cupos {
-    font-size: 1rem;
-    margin-bottom: 40px; /* Espaciado amplio antes de los botones */
-    color: #666666;
-    font-weight: 400;
+    font-family: 'TIMESS', serif !important;
+    color: #2d4d42;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
 }
 
-/* CONTENEDOR DE BOTONES HORIZONTALES */
+/* 5. CONTENEDOR DE BOTONES HORIZONTALES */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
 }
 
-/* BOTONES REDONDEADOS */
+/* BOTONES REDONDEADOS TIPO SUGERIR CANCIÓN */
 .btn {
     border: none;
     padding: 14px 20px;
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    flex: 1; /* Hace que ambos botones tengan exactamente el mismo ancho simétrico */
+    flex: 1; /* Distribución simétrica idéntica */
     transition: all .2s ease;
 }
 
 .sound {
-    background: #7A843D;
+    background-color: #7a843d; /* Tu paleta verde oliva */
     color: white;
     box-shadow: 0 4px 10px rgba(122, 132, 61, 0.2);
 }
 
 .sound:hover {
-    background: #636b32;
+    background-color: #636b32;
     transform: translateY(-1px);
 }
 
 .continue {
-    background: #f8f9f8;
+    background: rgba(255, 255, 255, 0.9); /* Un sutil fondo blanco traslúcido para legibilidad */
     color: #2d4d42;
     border: 1px solid #e2e8e2;
 }
 
 .continue:hover {
-    background: #eeeeee;
+    background: #ffffff;
     transform: translateY(-1px);
 }
 
 .btn:active {
-    transform: scale(.97);
+    transform: scale(.96);
 }
 
-/* COMPORTAMIENTO EN MÓVILES (Mantiene las proporciones verticales de la tarjeta) */
-@media(max-width:480px){
-    .cover {
-        padding: 20px 15px;
-    }
-    .main-card {
-        padding: 50px 25px; /* Ajuste sutil para conservar el formato vertical */
+/* RESPONSIVE AJUSTADO */
+@media (max-width: 480px) {
+    .card {
+        padding-top: 220px; /* Reducción leve para que en pantallas chicas no se desplace demasiado */
+        padding-left: 20px;
+        padding-right: 20px;
     }
     #nombre {
-        font-size: 2.4rem;
-    }
-    .buttons {
-        gap: 10px;
+        font-size: 2rem;
     }
     .btn {
         padding: 12px 15px;
-        font-size: .75rem;
+        font-size: 0.7rem;
     }
 }
 </style>
@@ -156,12 +171,10 @@ body{
 
 <body>
 
-<div class="cover">
-    <!-- Tu foto de fondo (foto1.jpeg) se mantendrá completa y proporcionada detrás -->
-    <img src="foto 1.jpeg" class="cover-bg">
-
-    <!-- Tarjeta vertical estilizada idéntica a tu segunda referencia -->
-    <div class="main-card">
+<!-- CONTENEDOR GENERAL COPIADO DE INVITACION 2 -->
+<div class="hero">
+    <div class="card">
+        
         <div class="label">ESTÁN INVITADOS</div>
         <div id="nombre">Invitado Especial</div>
         <div id="cupos">Cupo/s: 1</div>
@@ -171,9 +184,10 @@ body{
                 🔊 Escuchar
             </button>
             <button class="btn continue" onclick="entrarSinMusica()">
-                ¼ Continuar
+                🔇 Continuar
             </button>
         </div>
+
     </div>
 </div>
 
