@@ -198,58 +198,64 @@ body {
 
         <div class="buttons">
             <button class="btn sound" onclick="entrarConMusica()">
-                🔊 Escuchar
+                🔊 Nuestra Melodia
             </button>
             <button class="btn continue" onclick="entrarSinMusica()">
-                🔇 Continuar
+                🔇 Siguiente
             </button>
         </div>
     </div>
 </div>
 
 <audio id="music">
-    <source src="Zelda.mp3" type="audio/mp3">
+    <source src="yotetodo.MP3" type="audio/mpeg">
 </audio>
 
 <script>
 const token = new URLSearchParams(location.search).get("code");
-let nombreInvitado="";
-let cupos=1;
+let nombreInvitado = "";
+let cupos = 1;
 
 fetch("invitados.json")
-.then(r=>r.json())
-.then(data=>{
-    if(!token || !data[token]){
-        document.body.innerHTML=`
+.then(r => r.json())
+.then(data => {
+    if (!token || !data[token]) {
+        document.body.innerHTML = `
         <div style="height:100vh; display:flex; align-items:center; justify-content:center; font-size:22px; background:#f4f6f4; color:#2d4d42;">
         Invitación no válida
         </div>`;
         return;
     }
 
-    nombreInvitado=data[token].nombre;
-    cupos=data[token].cupos;
+    nombreInvitado = data[token].nombre;
+    cupos = data[token].cupos;
 
-    document.getElementById("nombre").innerText=nombreInvitado;
-    document.getElementById("cupos").innerText=`Cupo/s: ${cupos}`;
+    document.getElementById("nombre").innerText = nombreInvitado;
+    document.getElementById("cupos").innerText = `Cupo/s: ${cupos}`;
 });
 
-function entrarConMusica(){
-    const audio=document.getElementById("music");
-    audio.volume=.6;
+function entrarConMusica() {
+    const audio = document.getElementById("music");
+    audio.volume = 0.6;
+
+    // Guardamos la intención de reproducir antes de intentar el play
+    sessionStorage.setItem("playMusic", "true");
+
     audio.play()
-    .then(()=>{
-        sessionStorage.setItem("playMusic", "true");
-        window.location=`invitacion2.html?code=${token}`;
+    .then(() => {
+        window.location.href = `invitacion2.html?code=${token}`;
     })
-    .catch(()=>{
-        window.location=`invitacion2.html?code=${token}`;
+    .catch((error) => {
+        console.log("El navegador bloqueó el autoplay o requiere interacción:", error);
+        // Redirige de todos modos para que el invitado no se quede atrapado
+        window.location.href = `invitacion2.html?code=${token}`;
     });
 }
 
-function entrarSanMusica(){
+// CORREGIDO: Cambiado 'entrarSanMusica' a 'entrarSinMusica' para que coincida con el HTML
+function entrarSinMusica() {
     sessionStorage.removeItem("playMusic");
-    window.location=`invitacion2.html?code=${token}`;
+    window.location.href = `invitacion2.html?code=${token}`;
 }
 </script>
 
