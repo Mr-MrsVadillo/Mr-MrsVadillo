@@ -242,14 +242,7 @@ function entrarConMusica() {
     sessionStorage.setItem("playMusic", "true");
 
     audio.play()
-    .then(() => {
-        window.location.href = `invitacion2.html?code=${token}`;
-    })
-    .catch((error) => {
-        console.log("El navegador bloqueó el autoplay o requiere interacción:", error);
-        // Redirige de todos modos para que el invitado no se quede atrapado
-        window.location.href = `invitacion2.html?code=${token}`;
-    });
+ 
 }
 
 // CORREGIDO: Cambiado 'entrarSanMusica' a 'entrarSinMusica' para que coincida con el HTML
