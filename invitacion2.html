@@ -409,7 +409,7 @@
                         </div>
                         <h3>Asistencia</h3>
                         <p>Por favor confirmar antes del 27 de Julio</p>
-                        <a target="_blank" id="rsvpBtn" href="https://docs.google.com/forms/d/e/1FAIpQLScBrWT6EP3SA8olDZju1dqMepYSctdf4kAKRde0DCFytELyXg/viewform" class="btn-card">Confirmar</a>
+                        <a target="_blank" id="rsvpBtn" href="#" class="btn-card">Confirmar</a>
                     </div>
 
                     <div class="info-card">
@@ -500,11 +500,11 @@
                     document.getElementById('s').innerText = s;
                 }, 1000);
 
-                let formBase = "https://docs.google.com/forms/d/e/1FAIpQLSd4yOIAlAefsQ-voGlSio74xoHiW91AjYUPLaNXGT51dchTPw/viewform";
+                let formBase = "https://docs.google.com/forms/d/e/1FAIpQLScBrWT6EP3SA8olDZju1dqMepYSctdf4kAKRde0DCFytELyXg/viewform";
                 document.getElementById('rsvpBtn').href =
                     formBase +
-                    "?entry.1999824820=" + encodeURIComponent(invitado.nombre) +
-                    "&entry.2084982047=" + invitado.cupos;
+                    "?entry.1935321437" + encodeURIComponent(invitado.nombre) +
+                    "&entry.498416839=" + invitado.cupos;
             });
 
         // CONTROLADORES DEL REPRODUCTOR DE AUDIO RPG
