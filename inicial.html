@@ -6,27 +6,26 @@
 
 <title>Bienvenidos | Invitación</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
 @font-face {
     font-family: 'Cormorant Garamond';
     src: url('CormorantGaramond-VariableFont_wght.ttf') format('truetype');
-    /* Al ser una fuente variable, puedes definir el rango de grosores que soporta */
     font-weight: 300 700; 
     font-style: normal;
 }
-            /* ELIMINACIÓN DE SCROLLS LATERALES */
- html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            background: #fdfdfb;
-            color: #2f3e3a;
- }
 
+/* ELIMINACIÓN DE SCROLLS LATERALES */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: #fdfdfb;
+    color: #2f3e3a;
+}
 
 * {
     margin: 0;
@@ -42,7 +41,7 @@ body {
     overflow: hidden;
 }
 
-/* EL CONTENEDOR HERO AHORA LLEVA LA IMAGEN PARA QUE SE VEA COMPLETA EN WEB Y MÓVIL */
+/* CONTENEDOR HERO CON LA IMAGEN COMPLETA */
 .hero {
     min-height: 100vh;
     width: 100%;
@@ -59,7 +58,7 @@ body {
     background-repeat: no-repeat;
 }
 
-/* MÁSCARA DIFUMINADA: Aplica la marca de agua transparente y suaviza toda la pantalla */
+/* MÁSCARA DIFUMINADA: Marca de agua transparente */
 .hero::before {
     content: "";
     position: absolute;
@@ -67,7 +66,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Fondo blanco semi-transparente para el efecto marca de agua */
     background: rgba(255, 255, 255, 0.45); 
     z-index: 1;
 }
@@ -76,7 +74,6 @@ body {
 .card-wrapper {
     max-width: 500px;
     width: 100%;
-    /* Convertimos el padding a unidades de pantalla vh para evitar scrolls */
     padding: 30vh 20px 10vh; 
     position: relative;
     z-index: 2;
@@ -86,26 +83,25 @@ body {
     align-items: center;
 }
 
-/* EFECTO DE DIFUMINADO RADIAL DETRÁS DEL TEXTO (Reemplaza los bordes duros de la tarjeta) */
+/* EFECTO DE DIFUMINADO RADIAL DETRÁS DEL TEXTO */
 .blur-glow {
     position: absolute;
     width: 120%;
     height: 80%;
     top: 25vh;
-    /* Crea un degradado radial ultra suave que se disuelve hacia los lados */
     background: radial-gradient(circle, rgba(255,255,255,0.95) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
-    filter: blur(20px); /* Difumina los extremos para que no existan líneas marcadas */
+    filter: blur(20px); 
     z-index: -1;
     pointer-events: none;
 }
 
 /* ESTILOS DE TEXTO E HIGHLIGHTS */
 .label {
-    font-family: 'TIMESS', serif !important;
+    font-family: 'Cormorant Garamond', serif !important;
     letter-spacing: 4px;
     font-size: .85rem;
     margin-bottom: 15px;
-    color: #2d4d42;
+    color: #103825;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -117,7 +113,7 @@ body {
     font-size: 2.8rem;
     line-height: 1.2;
     margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Mejora lectura sobre fondo claro */
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); 
 }
 
 #cupos {
@@ -128,53 +124,50 @@ body {
     margin-bottom: 40px;
 }
 
-/* BOTONES SIMÉTRICOS HORIZONTALES */
+/* BOTONES SIMÉTRICOS HORIZONTALES CON ESTILO RETO RPG / ZELDA */
 .buttons {
     display: flex;
     justify-content: center;
     gap: 14px;
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
 }
 
 .btn {
-    border: none;
-    padding: 14px 20px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
+    border: 4px solid #d4af37; /* Borde dorado clásico de Trifuerza */
+    background: #103825; /* Verde bosque profundo */
+    color: #d4af37; /* Texto dorado */
+    padding: 14px 10px;
+    font-size: 8px; /* Tamaño pixel art ideal para la fuente */
+    font-family: 'Press Start 2P', monospace;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
     flex: 1;
-    transition: all .2s ease;
+    border-radius: 4px;
+    image-rendering: pixelated;
+    /* Efecto relieve 3D retro */
+    box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #1c5c32;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
-.sound {
-    background-color: #103825;
-    color: white;
-    box-shadow: 0 4px 15px rgba(122, 132, 61, 0.3);
-}
-
-.sound:hover {
-    background-color: #636b32;
-    transform: translateY(-1px);
-}
-
+/* Variación de color alternativa para el botón "Siguiente" si quieres diferenciarlo, o mantener ambos iguales */
 .continue {
-    background: rgba(255, 255, 255, 0.9);
-    color: #103825;
-    border: 1px solid rgba(45, 77, 66, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background: #1a4c35; 
+    box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #2a6f44;
 }
 
-.continue:hover {
-    background: #ffffff;
-    transform: translateY(-1px);
+.btn:hover {
+    filter: brightness(1.1);
 }
 
+/* Efecto mecánico al presionar el botón (se hunde como un botón real) */
 .btn:active {
-    transform: scale(.96);
+    transform: translateY(4px);
+    box-shadow: 0 1px 0px #082216, inset -1px -1px 0px #082216, inset 1px 1px 0px #1c5c32;
 }
 
 /* AJUSTES DE PADDING EN DISPOSITIVOS MÓVILES */
@@ -189,9 +182,12 @@ body {
     #nombre {
         font-size: 2.3rem;
     }
+    .buttons {
+        gap: 10px;
+    }
     .btn {
-        padding: 12px 15px;
-        font-size: 0.7rem;
+        padding: 12px 6px;
+        font-size: 7px;
     }
 }
 </style>
@@ -208,10 +204,10 @@ body {
 
         <div class="buttons">
             <button class="btn sound" onclick="entrarConMusica()">
-                🔊 Nuestra Melodia
+                🔊 MELODÍA
             </button>
             <button class="btn continue" onclick="entrarSinMusica()">
-                🔇 Siguiente
+                🔇 SIGUIENTE
             </button>
         </div>
     </div>
@@ -252,10 +248,15 @@ function entrarConMusica() {
     sessionStorage.setItem("playMusic", "true");
 
     audio.play()
- 
+    .then(() => {
+        window.location.href = `invitacion2.html?code=${token}`;
+    })
+    .catch((error) => {
+        console.log("Autoplay bloqueado, redirigiendo igual:", error);
+        window.location.href = `invitacion2.html?code=${token}`;
+    });
 }
 
-// CORREGIDO: Cambiado 'entrarSanMusica' a 'entrarSinMusica' para que coincida con el HTML
 function entrarSinMusica() {
     sessionStorage.removeItem("playMusic");
     window.location.href = `invitacion2.html?code=${token}`;
