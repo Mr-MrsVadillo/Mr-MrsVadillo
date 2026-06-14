@@ -47,7 +47,7 @@
             box-sizing: border-box;
         }
 
-        /* 2. CONTENEDOR HERO CON LA IMAGEN DE FONDO */
+        /* 2. CONTENEDOR HERO OPTIMIZADO PARA MOSTRAR LA IMAGEN COMPLETA SIN CORTES */
         .hero {
             min-height: 100vh;
             width: 100%;
@@ -59,18 +59,18 @@
             position: relative;
             
             background-image: url('https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/fondo_nombres.jpeg');
-            background-size: cover;
+            background-size: contain; /* CAMBIO CLAVE: Muestra la imagen completa sin recortar los bordes */
             background-position: center top;
             background-repeat: no-repeat;
-            background-attachment: scroll;
+            background-color: #f3f0e4; /* Color de fondo sutil que unifica el tono de la tarjeta si la pantalla es muy alta */
         }
 
         /* Envoltorio general de los contenidos */
         .content-wrapper {
             max-width: 500px;
             width: 100%;
-            /* AJUSTE: Empuja dinámicamente todo el contenido para situarlo debajo del título del fondo */
-            padding-top: 90vh; 
+            /* Ajustado proporcionalmente para que empiece exactamente debajo de la imagen completa */
+            padding-top: 58vh; 
             padding-bottom: 50px;
             position: relative;
             z-index: 2;
@@ -84,7 +84,7 @@
             align-items: center;
         }
 
-        /* 3. ESTILOS DE TEXTO COHERENTES */
+        /* 3. ESTILOS DE TEXTO */
         h2 {
             font-family: 'Cormorant Garamond', serif !important;
             font-size: 1.6rem;
@@ -143,12 +143,12 @@
             color: #103825;
         }
 
-        /* 4. REPRODUCTOR PERSONALIZADO ESTILO VIDEOJUEGO (ZELDA RPG) */
+        /* 4. REPRODUCTOR PERSONALIZADO ZELDA RPG */
         .zelda-player {
             width: 95%;
             max-width: 400px;
-            background: #103825; /* Verde bosque profundo */
-            border: 4px solid #d4af37; /* Borde dorado clásico de trifuerza */
+            background: #103825;
+            border: 4px solid #d4af37;
             padding: 15px 20px;
             border-radius: 4px;
             display: flex;
@@ -187,7 +187,7 @@
         .zelda-track-title {
             font-family: 'Press Start 2P', monospace;
             font-size: 8px;
-            color: #d4af37; /* Dorado */
+            color: #d4af37;
             margin-bottom: 6px;
             text-transform: uppercase;
             white-space: nowrap;
@@ -195,7 +195,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Barra de progreso estilo barra de vida de RPG */
         .zelda-progress-bar {
             width: 100%;
             height: 12px;
@@ -208,7 +207,7 @@
         .zelda-progress-fill {
             height: 100%;
             width: 0%; 
-            background: #e53935; /* Rojo barra de vida clásica */
+            background: #e53935;
             box-shadow: inset -2px 0px 0px #b71c1c;
             transition: width 0.1s linear;
         }
@@ -283,15 +282,12 @@
 
         @media (max-width: 480px) {
             .content-wrapper {
-                padding-top: 88vh; /* Controla la simetría exacta en formatos móviles verticales */
+                padding-top: 56vh; /* Balance exacto para el inicio en teléfonos */
             }
             .section-container {
                 max-width: 100%;
                 padding: 0 5px;
                 gap: 12px;
-            }
-            #nombre {
-                font-size: 2.2rem;
             }
         }
     </style>
@@ -323,10 +319,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- SECCIÓN DE NOMBRE Y ACCESOS DINÁMICOS -->
-                <div id="nombre">Invitado Especial</div>
-                <div id="cupos"></div>
 
                 <div class="section">
                     <h2>Cuenta regresiva</h2>
@@ -443,14 +435,12 @@
                 }
 
                 const invitado = data[token];
-                document.getElementById('nombre').innerText = invitado.nombre;
-                document.getElementById('cupos').innerText = `Cupo/s: ${invitado.cupos}`;
 
                 // Countdown
                 const fechaBoda = new Date('2026-09-04T16:30:00').getTime();
                 setInterval(() => {
                     const ahora = new Date().getTime();
-                    const diff = fechaBoda - Rules;
+                    const diff = fechaBoda - ahora;
 
                     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
