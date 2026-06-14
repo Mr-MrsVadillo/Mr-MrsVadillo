@@ -301,6 +301,30 @@
                 gap: 12px;
             }
         }
+
+        /* CONTENEDOR DE LA NUEVA IMAGEN DECORATIVA */
+        .decor-image-container {
+            width: 100%;
+            max-width: 380px; /* Evita que se vea gigante en pantallas grandes */
+            margin: 0 auto 20px; /* Centrado horizontal y separación del texto de abajo */
+            padding: 0 10px;
+        }
+        
+        .decor-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* Garantiza que la imagen no se corte ni se moche por ningún lado */
+            border-radius: 12px; /* Un toque sutil redondeado en las esquinas si lo deseas, o pon 0 si la quieres cuadrada */
+            display: block;
+        }
+        
+        /* Ajuste sutil para celulares pequeños */
+        @media (max-width: 480px) {
+            .decor-image-container {
+                max-width: 90%; /* Se encoge proporcionalmente en pantallas angostas */
+                margin-bottom: 15px;
+            }
+        }
     </style>
 </head>
 
