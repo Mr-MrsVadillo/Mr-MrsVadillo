@@ -207,7 +207,7 @@ body {
                 🔊 MELODÍA
             </button>
             <button class="btn continue" onclick="entrarSinMusica()">
-                🔇 SIGUIENTE
+                 SIGUIENTE
             </button>
         </div>
     </div>
@@ -248,13 +248,6 @@ function entrarConMusica() {
     sessionStorage.setItem("playMusic", "true");
 
     audio.play()
-    .then(() => {
-        window.location.href = `invitacion2.html?code=${token}`;
-    })
-    .catch((error) => {
-        console.log("Autoplay bloqueado, redirigiendo igual:", error);
-        window.location.href = `invitacion2.html?code=${token}`;
-    });
 }
 
 function entrarSinMusica() {
