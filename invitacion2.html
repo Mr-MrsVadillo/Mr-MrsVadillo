@@ -10,94 +10,94 @@
         rel="stylesheet">
 
     <!-- OpenGraph -->
-    <meta property="og:title" content="Nuestra Historia 💍">
+    <meta property="og:title" content="Mr&MrsVadillo💍">
     <meta property="og:description" content="Estás invitado/a a vivir un momento único.">
     <meta property="og:image" content="https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/fondo_nombres.jpeg">
     <meta property="og:url" content="https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/invitacion2.html">
     <meta property="og:type" content="website">
 
     <style>
+        /* 1. TIPOGRAFÍAS */
         @font-face {
-            font-family: 'Earthgate';
-            /* Usamos el nombre exacto del archivo que subiste */
-            src: url('Earthgate DEMO.otf') format('opentype');
-            font-weight: normal;
+            font-family: 'Cormorant Garamond';
+            src: url('CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+            /* Al ser una fuente variable, puedes definir el rango de grosores que soporta */
+            font-weight: 300 700;
             font-style: normal;
         }
 
-        @font-face {
-            font-family: 'Easter Onion';
-            /* Usamos el nombre exacto del archivo que subiste */
-            src: url('Easter%20Onion.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'Wedding Style';
-            /* Usamos el nombre exacto del archivo que subiste */
-            src: url('Wedding%20Style.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'TIMESS';
-            /* Usamos el nombre exacto del archivo que subiste */
-            src: url('TIMESS__.ttf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            /* Fondo general en un tono crema suave que combine con las hojas */
             background: #fdfdfb;
             color: #2f3e3a;
         }
 
+        /* 2. ESTRUCTURA HERO CON LA IMAGEN DE FONDO COMPLETA (IGUAL A LA INICIAL) */
         .hero {
             min-height: 100vh;
+            width: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            /* Permite que el contenido fluya verticalmente si es largo */
             justify-content: center;
             text-align: center;
-            padding: 20px;
-        }
-
-        .card {
-
-            max-width: 500px;
-            width: 100%;
-            border-radius: 20px;
-            padding: 180px 40px 160px;
-            /*        ↑     ↑      ↑
-            top   lados   bottom */
-
-            /* Más padding arriba/abajo para no tapar las hojas */
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+            padding: 40px 20px;
             position: relative;
-            overflow: hidden;
 
-            /* AQUÍ INTEGRAMOS TU IMAGEN */
             background-image: url('https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/fondo_nombres.jpeg');
             background-size: cover;
-            background-position: top;
-            background-color: white;
-            /* Respaldo si falla la imagen */
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
         }
 
-        .card {
-            padding-top: 250px;
+        /* Capa de marca de agua sutil sobre toda la foto */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 1;
         }
 
-        /* Esto asegura que el contenido esté por encima del filtro */
-        .card>* {
+        /* 3. CONTENEDOR DE CONTENIDO (REEMPLAZA A .CARD PARA ELIMINAR LOS MARCOS) */
+        .content-wrapper {
+            max-width: 500px;
+            width: 100%;
+            /* AJUSTE CLAVE: Empuja todo el contenido hacia abajo de forma masiva para no pisar el fondo */
+            padding-top: 45vh;
+            padding-bottom: 40px;
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
+        /* EFECTO DIFUMINADO TIPO NEBLINA (IGUAL A LA INICIAL) */
+        .blur-glow {
+            position: absolute;
+            width: 140%;
+            height: 85%;
+            top: 40vh;
+            /* Se posiciona exactamente detrás del bloque de texto desplazado */
+            background: radial-gradient(circle, rgba(253, 253, 251, 0.98) 30%, rgba(253, 253, 251, 0.85) 60%, rgba(253, 253, 251, 0) 100%);
+            filter: blur(15px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 4. ESTILOS DE TEXTO COHERENTES */
         h1 {
             font-family: 'Wedding Style', serif !important;
             font-size: 3rem;
@@ -107,141 +107,161 @@
 
         h2 {
             font-family: 'TIMESS', serif !important;
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: #2d4d42;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         h4 {
             font-family: 'TIMESS', serif !important;
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
             color: #2d4d42;
+            letter-spacing: 1px;
         }
 
         .date {
             font-family: 'TIMESS', serif !important;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: #2d4d42;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            color: #103825;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
         .quote {
             font-family: 'TIMESS', serif !important;
+            font-size: 0.95rem;
             color: #2d4d42;
-        }
-
-        #cupos {
-            font-family: 'TIMESS', serif !important;
-            color: #2d4d42;
-            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 35px;
+            padding: 0 10px;
         }
 
         #nombre {
             font-family: 'Easter Onion', serif !important;
             color: #637c36;
             font-weight: 600;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 5px;
         }
 
+        #cupos {
+            font-family: 'TIMESS', serif !important;
+            color: #103825;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 45px;
+        }
+
+        .section {
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        /* Cuenta regresiva */
         .countdown {
             font-family: 'TIMESS', serif !important;
             color: #2d4d42;
             display: flex;
-            justify-content: space-around;
-            margin-top: 25px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .time-box {
             text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
         .time-box span {
             display: block;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
+            color: #103825;
         }
 
-
-        /* Contenedor general de las tarjetas */
+        /* 5. SECCIÓN DE TARJETAS EN BLOQUE (SISTEMA GRID) */
         .section-container {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 16px;
             width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-            justify-content: center;
+            max-width: 440px;
+            margin: 30px auto 0;
         }
-
-        @media (max-width: 480px) {
-            .section-container {
-                max-width: 100%;
-                padding: 0 5px;
-                gap: 12px;
-            }
-        }
-
-
-
 
         .info-card {
             font-family: 'TIMESS', serif !important;
             color: #2d4d42;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 15px;
-            /* Reducido para que quepan 2 */
+            background: rgba(255, 255, 255, 0.93);
+            border-radius: 18px;
+            padding: 20px 12px;
             text-align: center;
-            border: 1px solid #eee;
+            border: 1px solid rgba(238, 238, 238, 0.7);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
         }
 
         .card-icon {
             width: 28px;
             height: 28px;
             margin: 0 auto 8px;
-            stroke: var(--verde);
+            stroke: #7a9c8c;
             fill: none;
         }
 
-
         .info-card h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 5px;
-            color: #2d4d42;
+            margin-bottom: 6px;
+            color: #103825;
         }
 
         .info-card p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #666;
             margin-bottom: 15px;
+            line-height: 1.3;
         }
 
+        /* Botón estilizado tipo Oliva Redondeado */
         .btn-card {
             background-color: #7a843d;
             color: white;
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.55rem;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.7rem;
             text-transform: uppercase;
             font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
         }
 
-
-        .full-width {
-            grid-column: 1 / -1;
+        .btn-card:hover {
+            background-color: #636b32;
         }
 
+        /* Control de Audio Flotante */
         .audio-btn {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(122, 156, 140, 0.9);
+            background: rgba(16, 56, 37, 0.85);
             color: white;
             width: 42px;
             height: 42px;
@@ -252,43 +272,57 @@
             font-size: 18px;
             cursor: pointer;
             z-index: 9999;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: all .3s ease;
         }
 
         .audio-btn:hover {
-            transform: scale(1.08);
-            background: #6b8f80;
+            transform: scale(1.05);
         }
 
         .audio-btn.muted {
-            background: rgba(150, 150, 150, 0.8);
+            background: rgba(120, 120, 120, 0.75);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        /* RESPONSIVE PARA DISPOSITIVOS MÓVILES */
+        @media (max-width: 480px) {
+            .content-wrapper {
+                padding-top: 40vh;
+                /* Ajuste sutil del alto en celulares */
+            }
 
-        :root {
-            --verde: #7a9c8c;
-            --verde-oscuro: #2d4d42;
-            --beige: #fdfdfb;
+            .blur-glow {
+                top: 35vh;
+                width: 150%;
+            }
+
+            .section-container {
+                max-width: 100%;
+                padding: 0 5px;
+                gap: 12px;
+            }
+
+            #nombre {
+                font-size: 2.1rem;
+            }
         }
     </style>
 </head>
 
-<audio id="bg-music" autoplay loop>
-    <source src="zelda.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio HTML5.
-</audio>
-
-<div id="audio-control" class="audio-btn muted">🔇</div>
-
-
 <body>
 
+    <audio id="bg-music" autoplay loop>
+        <source src="zelda.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <div id="audio-control" class="audio-btn muted">🔇</div>
+
+    <!-- CONTENEDOR HERO INTEGRADO -->
     <div class="hero">
-        <div class="card">
+        <div class="content-wrapper">
+            <!-- Capa difuminada de lectura -->
+            <div class="blur-glow"></div>
 
             <div class="date">22.05.2026 <br>17:00 Hrs</div>
 
@@ -303,15 +337,14 @@
             <div class="section">
                 <h2>Cuenta regresiva</h2>
                 <div class="countdown">
-                    <div class="time-box"><span id="d">0</span>días</div><br>💚
-                    <div class="time-box"><span id="h">0</span>hs</div><br>💚
-                    <div class="time-box"><span id="m">0</span>min</div><br>💚
+                    <div class="time-box"><span id="d">0</span>días</div> 💚
+                    <div class="time-box"><span id="h">0</span>hs</div> 💚
+                    <div class="time-box"><span id="m">0</span>min</div> 💚
                     <div class="time-box"><span id="s">0</span>seg</div>
                 </div>
             </div>
-            <br>
-            <br>
 
+            <!-- CUADRÍCULA DE TARJETAS -->
             <div class="section-container">
 
                 <div class="info-card">
@@ -323,12 +356,8 @@
                     </div>
                     <h3>Lugar</h3>
                     <p>Cabaña Villa Sofía (SM)</p>
-                   <a href="https://www.instagram.com/cabanavillasofia_/" 
-   class="btn-card" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   Ver ubicación
-</a>
+                    <a href="https://www.instagram.com/cabanavillasofia_/" class="btn-card" target="_blank"
+                        rel="noopener noreferrer">Ver ubicación</a>
                 </div>
 
                 <div class="info-card">
@@ -341,7 +370,9 @@
                     </div>
                     <h3>Música</h3>
                     <p>Sugiere una pa' Bailar</p>
-                    <a target="_blank" href="https://open.spotify.com/playlist/3kYD4b99vkAHzbEIrBxfEZ?si=7ywJjWAOTaihKhww-m9plA&pt=d6dfaaebaa02adb0819f2381775a4041&pi=RiPRKCcmS3-0X" class="btn-card">Sugerir canción</a>
+                    <a target="_blank"
+                        href="https://open.spotify.com/playlist/3kYD4b99vkAHzbEIrBxfEZ?si=7ywJjWAOTaihKhww-m9plA&pt=d6dfaaebaa02adb0819f2381775a4041&pi=RiPRKCcmS3-0X"
+                        class="btn-card">Sugerir canción</a>
                 </div>
 
                 <div class="info-card">
@@ -350,7 +381,7 @@
                             <path d="M20 6L9 17l-5-5" stroke-width="1.8" />
                         </svg>
                     </div>
-                    <h3>Confirma tu Asistencia</h3>
+                    <h3>Asistencia</h3>
                     <p>Por favor confirmar antes del 31 de marzo</p>
                     <a target="_blank" id="rsvpBtn" href="#" class="btn-card">Confirmar</a>
                 </div>
@@ -366,6 +397,7 @@
                     <p>Lluvia de sobres</p>
                     <a target="_blank" href="regalos.html" class="btn-card">Ver QR</a>
                 </div>
+
                 <div class="info-card">
                     <div class="card-icon">
                         <svg viewBox="0 0 24 24" fill="none">
@@ -377,7 +409,9 @@
                     </div>
                     <h3>Dress Code</h3>
                     <p>Estilo romántico y fresco, con inspiración a costa</p>
-                    <a target="_blank" href="https://co.pinterest.com/dannasuescunb/Mr-MrsVadillo/?invite_code=40e7b1a54f5a4133b9c5b161d36ff5dd&sender=770397217415684746" class="btn-card">Ver inspiración</a>
+                    <a target="_blank"
+                        href="https://co.pinterest.com/dannasuescunb/Mr-MrsVadillo/?invite_code=40e7b1a54f5a4133b9c5b161d36ff5dd&sender=770397217415684746"
+                        class="btn-card">Ver inspiración</a>
                 </div>
 
                 <div class="info-card">
@@ -395,13 +429,13 @@
                     <p>Info para tener en cuenta</p>
                     <a target="_blank" href="tips.html" class="btn-card">+ INFO</a>
                 </div>
+
             </div>
         </div>
     </div>
+
     <script>
-        // Nombre por query
         const params = new URLSearchParams(window.location.search);
-        const nombre = params.get('nombre');
         const token = params.get('code');
 
         fetch('invitados.json')
@@ -410,9 +444,9 @@
 
                 if (!token || !data[token]) {
                     document.body.innerHTML = `
-                     <div style="display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;">
+                     <div style="display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;background:#fdfdfb;">
                        <div>
-                         <h1>Invitacion no valida</h1>
+                         <h1 style="color:#2d4d42;">Invitacion no valida</h1>
                          <p>Este acceso no está autorizado.</p>
                        </div>
                      </div>`;
@@ -421,10 +455,8 @@
 
                 const invitado = data[token];
 
-                // Render
                 document.getElementById('nombre').innerText = invitado.nombre;
                 document.getElementById('cupos').innerText = `Cupo/s: ${invitado.cupos}`;
-
 
                 // Countdown
                 const fechaBoda = new Date('2026-05-22T17:00:00').getTime();
@@ -454,13 +486,24 @@
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('audio-control');
 
-        // empieza en mute por compatibilidad móvil
+        // Seteo de audio por interactividad
         music.volume = 0.6;
-        music.muted = false;
+
+        // Carga el estado del audio que proviene desde la portada inicial
+        if (sessionStorage.getItem("playMusic") === "true") {
+            music.muted = false;
+            btn.innerText = '🔊';
+            btn.classList.remove('muted');
+        } else {
+            music.muted = true;
+            btn.innerText = '🔇';
+            btn.classList.add('muted');
+        }
 
         btn.addEventListener('click', () => {
             if (music.muted) {
                 music.muted = false;
+                music.play().catch(() => { });
                 btn.innerText = '🔊';
                 btn.classList.remove('muted');
             } else {
@@ -471,31 +514,11 @@
         });
 
         document.addEventListener('click', () => {
-            if (music.paused) {
+            if (sessionStorage.getItem("playMusic") === "true" && music.paused) {
                 music.play().catch(() => { });
             }
         }, { once: true });
-
     </script>
-
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
