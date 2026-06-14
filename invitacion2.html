@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Historia</title>
+    <title>Mr&MrsVadillo</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <!-- OpenGraph -->
@@ -69,7 +69,8 @@
         .content-wrapper {
             max-width: 500px;
             width: 100%;
-            padding-top: 55vh; /* Se mantiene para iniciar debajo del diseño superior de la imagen */
+            /* AJUSTE: Empuja dinámicamente todo el contenido para situarlo debajo del título del fondo */
+            padding-top: 90vh; 
             padding-bottom: 50px;
             position: relative;
             z-index: 2;
@@ -107,38 +108,10 @@
         .quote {
             font-family: 'Cormorant Garamond italic', serif !important;
             font-size: 1.15rem;
-            color: #2d4d42;
-            line-height: 1.6;
+            color: #103825;
+            line-height: 1.4;
             margin-bottom: 25px;
             padding: 0 15px;
-        }
-
-        /* IMAGEN DECORATIVA ARRIBA DEL NOMBRE */
-        .card-profile-img {
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #7a843d;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-        }
-
-        #nombre {
-            font-family: 'Cormorant Garamond', serif !important;
-            color: #637c36;
-            font-weight: 700;
-            font-size: 2.6rem;
-            line-height: 1.2;
-            margin-bottom: 5px;
-        }
-
-        #cupos {
-            font-family: 'Cormorant Garamond', serif !important;
-            color: #103825;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 40px;
         }
 
         .section {
@@ -149,7 +122,7 @@
         /* Cuenta regresiva */
         .countdown {
             font-family: 'Cormorant Garamond', serif !important;
-            color: #2d4d42;
+            color: #103825;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -172,7 +145,7 @@
 
         /* 4. REPRODUCTOR PERSONALIZADO ESTILO VIDEOJUEGO (ZELDA RPG) */
         .zelda-player {
-            width: 90%;
+            width: 95%;
             max-width: 400px;
             background: #103825; /* Verde bosque profundo */
             border: 4px solid #d4af37; /* Borde dorado clásico de trifuerza */
@@ -234,8 +207,8 @@
 
         .zelda-progress-fill {
             height: 100%;
-            width: 0%; /* Controlado por JS */
-            background: #e53935; /* Rojo barra de vida clásica o verde si prefieres */
+            width: 0%; 
+            background: #e53935; /* Rojo barra de vida clásica */
             box-shadow: inset -2px 0px 0px #b71c1c;
             transition: width 0.1s linear;
         }
@@ -310,7 +283,7 @@
 
         @media (max-width: 480px) {
             .content-wrapper {
-                padding-top: 53vh; 
+                padding-top: 88vh; /* Controla la simetría exacta en formatos móviles verticales */
             }
             .section-container {
                 max-width: 100%;
@@ -340,7 +313,7 @@
 
                 <div class="quote">"Este no es solo un momento importante para nosotros, es uno de esos días que se vuelven eternos cuando se viven con las personas indicadas…por eso queremos compartirlo con ustedes."</div>
 
-                <!-- REPRODUCTOR ESTILO RPG / ZELDA (UBICADO EXACTAMENTE AQUÍ DESPUÉS DEL MENSAJE) -->
+                <!-- REPRODUCTOR ESTILO RPG / ZELDA -->
                 <div class="zelda-player">
                     <button id="zelda-btn" class="zelda-play-btn">▶</button>
                     <div class="zelda-track-info">
@@ -351,18 +324,16 @@
                     </div>
                 </div>
 
-                <!-- IMAGEN AGREGADA JUSTO ARRIBA DEL NOMBRE DEL INVITADO -->
-                <img src="logo.jpeg" class="card-profile-img" alt="Boda Decoración">
-
+                <!-- SECCIÓN DE NOMBRE Y ACCESOS DINÁMICOS -->
                 <div id="nombre">Invitado Especial</div>
                 <div id="cupos"></div>
 
                 <div class="section">
                     <h2>Cuenta regresiva</h2>
                     <div class="countdown">
-                        <div class="time-box"><span id="d">0</span>días</div> 💚
-                        <div class="time-box"><span id="h">0</span>hs</div> 💚
-                        <div class="time-box"><span id="m">0</span>min</div> 💚
+                        <div class="time-box"><span id="d">0</span>días</div> 
+                        <div class="time-box"><span id="h">0</span>hs</div> 
+                        <div class="time-box"><span id="m">0</span>min</div> 
                         <div class="time-box"><span id="s">0</span>seg</div>
                     </div>
                 </div>
@@ -479,7 +450,7 @@
                 const fechaBoda = new Date('2026-09-04T16:30:00').getTime();
                 setInterval(() => {
                     const ahora = new Date().getTime();
-                    const diff = fechaBoda - ahora;
+                    const diff = fechaBoda - Rules;
 
                     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -506,7 +477,6 @@
 
         music.volume = 0.6;
         
-        // Carga estado inicial desde la portada
         if (sessionStorage.getItem("playMusic") === "true") {
             music.play().catch(() => {});
             zeldaBtn.innerText = '❚❚';
@@ -514,7 +484,6 @@
             zeldaBtn.innerText = '▶';
         }
 
-        // Evento Click en el Reproductor Zelda
         zeldaBtn.addEventListener('click', () => {
             if (music.paused) {
                 music.play().catch(() => {});
@@ -527,13 +496,11 @@
             }
         });
 
-        // Actualizar barra de vida (progreso del audio)
         music.addEventListener('timeupdate', () => {
             const percentage = (music.currentTime / music.duration) * 100;
             progressBar.style.width = percentage + '%';
         });
 
-        // Interacción inicial de respaldo
         document.addEventListener('click', () => {
             if (sessionStorage.getItem("playMusic") === "true" && music.paused) {
                 music.play().then(() => {
