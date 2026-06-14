@@ -37,7 +37,7 @@
             max-width: 100%;
             overflow-x: hidden;
             font-family: 'Montserrat', sans-serif;
-            background: #fdfdfb;
+            background: #f4f0e3; /* Tono de fondo que unifica perfectamente la acuarela */
             color: #2f3e3a;
         }
 
@@ -47,49 +47,46 @@
             box-sizing: border-box;
         }
 
-        /* 2. CONTENEDOR ELÁSTICO (Crece verticalmente según el texto) */
-        .hero {
+        /* 2. CONTENEDOR PRINCIPAL INTEGRADO */
+        .invitation-container {
             width: 100%;
             min-height: 100vh;
             display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            text-align: center;
-            padding: 20px 15px;
+            flex-direction: column;
+            align-items: center;
             position: relative;
         }
 
-        /* IMAGEN DE FONDO ELÁSTICA: Abarca todo el largo dinámicamente sin perder color ni nitidez */
-        .bg-elastic-image {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* CABEZOTE DE IMAGEN FLUIDA Y NITIDA (Mantiene las letras perfectas) */
+        .header-bg-image {
             width: 100%;
-            height: 100%;
-            object-fit: fill; /* Obliga a la imagen a estirarse a lo largo exacto de todo el contenido */
-            z-index: 1;
-            pointer-events: none;
+            max-width: 500px;
+            height: auto;
+            aspect-ratio: 500 / 720; /* Proporción estándar de la tarjeta de invitación */
+            background-image: url('https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/fondo_nombres.jpeg');
+            background-size: contain;
+            background-position: center top;
+            background-repeat: no-repeat;
         }
 
-        /* Envoltorio general de los contenidos */
+        /* 3. ENVOLTORIO GENERAL DEL CONTENIDO DINÁMICO */
         .content-wrapper {
             max-width: 500px;
             width: 100%;
-            padding-top: 55vh; /* Espacio perfecto debajo del cabezote de los nombres */
-            padding-bottom: 60px;
+            padding: 10px 15px 60px;
             position: relative;
             z-index: 2;
+            margin-top: -12vh; /* Ajuste preciso para iniciar exactamente en la transición botánica */
         }
 
         .main-card-content {
             width: 100%;
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 3. ESTILOS DE TEXTO */
+        /* 4. ESTILOS DE TEXTO */
         h2 {
             font-family: 'Cormorant Garamond', serif !important;
             font-size: 1.6rem;
@@ -148,7 +145,7 @@
             color: #103825;
         }
 
-        /* 4. REPRODUCTOR PERSONALIZADO ZELDA RPG */
+        /* 5. REPRODUCTOR PERSONALIZADO ZELDA RPG */
         .zelda-player {
             width: 95%;
             max-width: 400px;
@@ -217,7 +214,7 @@
             transition: width 0.1s linear;
         }
 
-        /* 5. CUADRÍCULA DE TARJETAS GRID 2x2 */
+        /* 6. CUADRÍCULA DE TARJETAS GRID 2x2 */
         .section-container {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -287,7 +284,7 @@
 
         @media (max-width: 480px) {
             .content-wrapper {
-                padding-top: 55vh; 
+                margin-top: -10vh; /* Ajuste responsivo optimizado para móviles */
             }
             .section-container {
                 max-width: 100%;
@@ -305,12 +302,13 @@
         <source src="zelda.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="hero">
-        <!-- ETIQUETA DE IMAGEN ABSOLUTA: Crece armónicamente sin perder color ni calidad -->
-        <img src="https://Mr-MrsVadillo.github.io/Mr-MrsVadillo/fondo_nombres.jpeg" class="bg-elastic-image" alt="Fondo Nombres">
+    <div class="invitation-container">
+        
+        <!-- CABEZOTE SUPERIOR: La imagen mantiene su nitidez nativa sin deformarse -->
+        <div class="header-bg-image"></div>
 
+        <!-- SECCIÓN DE CONTENIDO ELÁSTICO -->
         <div class="content-wrapper">
-            
             <div class="main-card-content">
 
                 <div class="date">04.09.2026 <br>16:30 Hrs</div>
@@ -420,8 +418,8 @@
 
                 </div>
             </div>
-
         </div>
+        
     </div>
 
     <script>
