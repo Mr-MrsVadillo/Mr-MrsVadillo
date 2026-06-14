@@ -26,6 +26,14 @@
             font-style: normal;
         }
 
+        @font-face {
+            font-family: 'Cormorant Garamond italic';
+            src: url('CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+            /* Al ser una fuente variable, puedes definir el rango de grosores que soporta */
+            font-weight: 300 700;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -57,18 +65,7 @@
             background-repeat: no-repeat;
             background-attachment: scroll;
         }
-
-        /* Capa de marca de agua sutil sobre toda la foto */
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            z-index: 1;
-        }
+    
 
         /* 3. CONTENEDOR DE CONTENIDO (REEMPLAZA A .CARD PARA ELIMINAR LOS MARCOS) */
         .content-wrapper {
