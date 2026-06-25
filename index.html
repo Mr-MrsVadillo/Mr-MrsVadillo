@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación | Erick & Stefany</title>
-    <style>
-        /* ... Tus estilos anteriores ... */
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienvenidos | Invitación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-        /* CONTENEDOR DEL VIDEO INICIAL */
+    <style>
+        /* 1. TIPOGRAFÍAS */
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            src: url('CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+            font-weight: 300 700;
+            font-style: normal;
+        }
+
+        /* ELIMINACIÓN DE SCROLLS ACCIDENTALES */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family: 'Cormorant Garamond', sans-serif;
+            background: #fdfdfb;
+            color: #2f3e3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        /* 2. CONTENEDOR DE LA INTRO EN VIDEO (CINEMÁTICA) */
         #intro-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 999; /* Por encima de todo al principio */
-            background-color: #000;
-            transition: opacity 1s ease; /* Transición suave al terminar */
+            background-color: #103825; /* Fondo verde bosque de respaldo */
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s ease;
         }
 
         #intro-video {
@@ -25,59 +59,278 @@
             object-fit: cover;
         }
 
-        /* CONTENEDOR DE LA INVITACIÓN (INICIAL.HTML) */
-        #main-content {
-            opacity: 0; /* Oculto al principio */
-            transition: opacity 1.2s ease;
-            /* Aquí va el estilo de fondo que simula el final del video */
-            background: url('nombres_fondo.jpeg') no-repeat center center fixed;
-            background-size: cover;
+        /* BOTÓN FLOTANTE PARA SALTAR INTRO */
+        .skip-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            background: rgba(16, 56, 37, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: #d4af37;
+            padding: 10px 18px;
+            font-size: 8px;
+            font-family: 'Press Start 2P', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 1000;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
         }
 
-        /* Clase activa para mostrar la invitación */
-        .mostrar-invitacion #main-content {
+        .skip-btn:hover {
+            background: #103825;
+            border-color: #d4af37;
+            transform: scale(1.03);
+        }
+
+        /* 3. INTERFAZ PRINCIPAL DE BIENVENIDA (INICIAL) */
+        .hero {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            background-image: url('foto 1.jpeg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            opacity: 0; /* Oculta inicialmente mientras corre el video */
+            transition: opacity 1.2s ease;
+        }
+
+        /* Capa transparente de marca de agua */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.45);
+            z-index: 1;
+        }
+
+        /* Estado activo cuando la intro finaliza */
+        body.intro-terminada .hero {
             opacity: 1;
+        }
+
+        .card-wrapper {
+            max-width: 500px;
+            width: 100%;
+            padding: 30vh 20px 10vh;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blur-glow {
+            position: absolute;
+            width: 120%;
+            height: 80%;
+            top: 25vh;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+            filter: blur(20px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #nombre {
+            font-family: 'Cormorant Garamond', serif !important;
+            color: #103825;
+            font-weight: 600;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        #cupos {
+            font-family: 'Cormorant Garamond', serif !important;
+            color: #103825;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* 4. BOTONES SIMÉTRICOS CON ESTILO VIDEOJUEGO DE ZELDA */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .btn {
+            border: 4px solid #d4af37; /* Borde dorado clásico de Trifuerza */
+            background: #103825; /* Verde bosque profundo */
+            color: #d4af37; /* Texto e iconos dorados */
+            padding: 14px 10px;
+            font-size: 8px; /* Ideal para legibilidad pixel-art */
+            font-family: 'Press Start 2P', monospace;
+            text-transform: uppercase;
+            cursor: pointer;
+            flex: 1;
+            border-radius: 4px;
+            image-rendering: pixelated;
+            /* Efecto relieve 3D mecánico */
+            box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #1c5c32;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .continue {
+            background: #1a4c35; 
+            box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #2a6f44;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0px #082216, inset -1px -1px 0px #082216, inset 1px 1px 0px #1c5c32;
+        }
+
+        /* AJUSTES DE RESPONSIVE MÓVIL */
+        @media (max-width: 480px) {
+            .card-wrapper {
+                padding-top: 35vh;
+            }
+
+            .blur-glow {
+                top: 30vh;
+                width: 140%;
+            }
+
+            #nombre {
+                font-size: 2.3rem;
+            }
+
+            .buttons {
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 12px 6px;
+                font-size: 7px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div id="intro-container">
         <video id="intro-video" autoplay muted playsinline>
             <source src="sobre con foto.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
         </video>
-        <button class="skip-btn" onclick="mostrarInvitacionDirecto()">Saltar Intro ➔</button>
+        <button class="skip-btn" onclick="finalizarIntro()">SALTAR INTRO ➔</button>
     </div>
 
-    <div id="main-content">
+    <div class="hero">
+        <div class="card-wrapper">
+            <div class="blur-glow"></div>
+
+            <div id="nombre">Invitado Especial</div>
+            <div id="cupos">Cupo/s: 1</div>
+
+            <div class="buttons">
+                <button class="btn sound" onclick="entrarConMusica()">
+                    🔊 MELODÍA
+                </button>
+                <button class="btn continue" onclick="entrarSinMusica()">
+                    重新 SIGUIENTE
+                </button>
+            </div>
         </div>
+    </div>
+
+    <audio id="music">
+        <source src="zelda.mp3" type="audio/mp3">
+    </audio>
 
     <script>
-        const video = document.getElementById('intro-video');
-        const introContainer = document.getElementById('intro-container');
+        // 1. CARGA DINÁMICA DEL TOKEN Y DATOS JSON
+        const token = new URLSearchParams(location.search).get("code");
+        let nombreInvitado = "";
+        let cupos = 1;
 
-        function transicionAInvitacion() {
-            // 1. Desvanecer el video
-            introContainer.style.opacity = '0';
-            
-            // 2. Hacer visible la información de la invitación
-            document.body.classList.add('mostrar-invitacion');
-            
-            // 3. Quitar el contenedor del video por completo después de 1 segundo para que no estorbe
+        fetch("invitados.json")
+            .then(r => r.json())
+            .then(data => {
+                if (!token || !data[token]) {
+                    document.body.innerHTML = `
+                    <div style="height:100vh; display:flex; align-items:center; justify-content:center; font-size:22px; background:#f4f6f4; color:#2d4d42; font-family:sans-serif;">
+                    Invitación no válida
+                    </div>`;
+                    return;
+                }
+
+                nombreInvitado = data[token].nombre;
+                cupos = data[token].cupos;
+
+                document.getElementById("nombre").innerText = nombreInvitado;
+                document.getElementById("cupos").innerText = `Cupo/s: ${cupos}`;
+            });
+
+        // 2. CONTROL DE LA TRANSICIÓN CINEMÁTICA
+        const video = document.getElementById("intro-video");
+        const introContainer = document.getElementById("intro-container");
+
+        function finalizarIntro() {
+            // Desvanecimiento estético de opacidad
+            introContainer.style.opacity = "0";
+            introContainer.style.visibility = "hidden";
+            document.body.classList.add("intro-terminada");
+
+            // Pausar y remover el video del DOM para liberar memoria tras 1 segundo
             setTimeout(() => {
-                introContainer.style.display = 'none';
+                video.pause();
+                introContainer.style.display = "none";
             }, 1000);
         }
 
-        // Detectar automáticamente cuando el video llega al final
-        video.addEventListener('ended', () => {
-            transicionAInvitacion();
+        // Finaliza automáticamente cuando el video termine su reproducción
+        video.addEventListener("ended", () => {
+            finalizarIntro();
         });
 
-        // Botón por si quieren saltarlo
-        function mostrarInvitacionDirecto() {
-            transicionAInvitacion();
+        // 3. LÓGICA DE CONTROL DE AUDIO Y REDIRECCIÓN HACIA LA PÁGINA INTERIOR
+        function entrarConMusica() {
+            const audio = document.getElementById("music");
+            audio.volume = 0.6;
+
+            sessionStorage.setItem("playMusic", "true");
+
+            audio.play()
+                .then(() => {
+                    window.location.href = `invitacion2.html?code=${token}`;
+                })
+                .catch((error) => {
+                    console.log("El navegador restringió el autoplay, redirigiendo de igual modo:", error);
+                    window.location.href = `invitacion2.html?code=${token}`;
+                });
+        }
+
+        function entrarSinMusica() {
+            sessionStorage.removeItem("playMusic");
+            window.location.href = `invitacion2.html?code=${token}`;
         }
     </script>
+
 </body>
 </html>
