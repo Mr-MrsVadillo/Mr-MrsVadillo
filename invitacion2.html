@@ -103,6 +103,19 @@
     border-radius: 16px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     display: block;
+
+    /* SOFT GRADIENT EDGES */
+    /* This radial gradient applies a soft alpha mask that makes the 
+       edges transparent and blends smoothly with the background */
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); /* */
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); /* */
+    
+    /* Ensure the mask is centered and fills the dimensions of the photo */
+    -webkit-mask-size: 100% 100%; /* */
+    mask-size: 100% 100%; /* */
+    
+    -webkit-mask-position: center; /* */
+    mask-position: center; /* */
 }
 
 /* Ajuste proporcional para asegurar que en pantallas un poco más grandes conserve armonía */
