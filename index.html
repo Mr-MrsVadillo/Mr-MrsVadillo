@@ -3,101 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenidos | Mr&MrsVadillo</title>
-    
+    <title>Invitación | Erick & Stefany</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ... Tus estilos anteriores ... */
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            background-color: #103825; /* Verde bosque profundo de fondo por si tarda en cargar */
-            overflow: hidden;
-        }
-
-        /* CONTENEDOR DEL VIDEO EN PANTALLA COMPLETA */
-        .video-container {
+        /* CONTENEDOR DEL VIDEO INICIAL */
+        #intro-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
+            z-index: 999; /* Por encima de todo al principio */
+            background-color: #000;
+            transition: opacity 1s ease; /* Transición suave al terminar */
         }
 
-        video {
+        #intro-video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que el video llene toda la pantalla del celular sin deformarse */
+            object-fit: cover;
         }
 
-        /* BOTÓN SUTIL PARA SALTAR INTRO */
-        .skip-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 20px;
-            background: rgba(16, 56, 37, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            color: #d4af37;
-            padding: 8px 16px;
-            font-size: 10px;
-            font-family: sans-serif;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            z-index: 10;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
+        /* CONTENEDOR DE LA INVITACIÓN (INICIAL.HTML) */
+        #main-content {
+            opacity: 0; /* Oculto al principio */
+            transition: opacity 1.2s ease;
+            /* Aquí va el estilo de fondo que simula el final del video */
+            background: url('nombres_fondo.jpeg') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        .skip-btn:hover {
-            background: rgba(16, 56, 37, 0.9);
-            border-color: #d4af37;
+        /* Clase activa para mostrar la invitación */
+        .mostrar-invitacion #main-content {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <div class="video-container">
+    <div id="intro-container">
         <video id="intro-video" autoplay muted playsinline>
-            <source src="sobre con foto.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
+            <source src="intro.mp4" type="video/mp4">
         </video>
+        <button class="skip-btn" onclick="mostrarInvitacionDirecto()">Saltar Intro ➔</button>
     </div>
 
-    <button class="skip-btn" onclick="avanzarInvitacion()">Saltar Intro ➔</button>
+    <div id="main-content">
+        </div>
 
     <script>
-        // Capturamos el código token de la URL (ej: ?code=S2XQ9M)
-        const token = new URLSearchParams(window.location.search).get("code");
-        const video = document.getElementById("intro-video");
+        const video = document.getElementById('intro-video');
+        const introContainer = document.getElementById('intro-container');
 
-        // Lógica para redirigir llevando el token correspondiente
-        function avanzarInvitacion() {
-            if (token) {
-                window.location.href = `inicial.html?code=${token}`;
-            } else {
-                window.location.href = `inicial.html`;
-            }
+        function transicionAInvitacion() {
+            // 1. Desvanecer el video
+            introContainer.style.opacity = '0';
+            
+            // 2. Hacer visible la información de la invitación
+            document.body.classList.add('mostrar-invitacion');
+            
+            // 3. Quitar el contenedor del video por completo después de 1 segundo para que no estorbe
+            setTimeout(() => {
+                introContainer.style.display = 'none';
+            }, 1000);
         }
 
-        // CONTROL AUTOMÁTICO: Cuando el video llega a su fin, salta solo a la siguiente pantalla
+        // Detectar automáticamente cuando el video llega al final
         video.addEventListener('ended', () => {
-            avanzarInvitacion();
+            transicionAInvitacion();
         });
 
-        // Respaldo de seguridad: Si por alguna razón el video falla o no carga en 8 segundos, avanza solo
-        setTimeout(() => {
-            avanzarInvitacion();
-        }, 8000); 
+        // Botón por si quieren saltarlo
+        function mostrarInvitacionDirecto() {
+            transicionAInvitacion();
+        }
     </script>
-
 </body>
 </html>
