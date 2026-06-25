@@ -160,51 +160,56 @@
             margin-bottom: 40px;
         }
 
-        /* 4. BOTONES SIMÉTRICOS CON ESTILO VIDEOJUEGO DE ZELDA */
+               /* BOTONES SIMÉTRICOS HORIZONTALES */
         .buttons {
             display: flex;
             justify-content: center;
             gap: 14px;
             width: 100%;
-            max-width: 440px;
+            max-width: 400px;
         }
 
         .btn {
-            border: 4px solid #d4af37; /* Borde dorado clásico de Trifuerza */
-            background: #103825; /* Verde bosque profundo */
-            color: #d4af37; /* Texto e iconos dorados */
-            padding: 14px 10px;
-            font-size: 8px; /* Ideal para legibilidad pixel-art */
-            font-family: 'Press Start 2P', monospace;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
             flex: 1;
-            border-radius: 4px;
-            image-rendering: pixelated;
-            /* Efecto relieve 3D mecánico */
-            box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #1c5c32;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            transition: all .2s ease;
+        }
+
+        .sound {
+            background-color: #103825;
+            color: white;
+            box-shadow: 0 4px 15px rgba(122, 132, 61, 0.3);
+        }
+
+        .sound:hover {
+            background-color: #103825;
+            transform: translateY(-1px);
         }
 
         .continue {
-            background: #1a4c35; 
-            box-shadow: 0 5px 0px #082216, inset -2px -2px 0px #082216, inset 2px 2px 0px #2a6f44;
+            background-color: #103825;
+            color: white;
+            border: 1px solid rgba(45, 77, 66, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .btn:hover {
-            filter: brightness(1.1);
+        .continue:hover {
+            background: #103528;
+            transform: translateY(-1px);
         }
 
         .btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0px #082216, inset -1px -1px 0px #082216, inset 1px 1px 0px #1c5c32;
+            transform: scale(.96);
         }
 
-        /* AJUSTES DE RESPONSIVE MÓVIL */
+        /* AJUSTES DE PADDING EN DISPOSITIVOS MÓVILES */
         @media (max-width: 480px) {
             .card-wrapper {
                 padding-top: 35vh;
@@ -219,13 +224,9 @@
                 font-size: 2.3rem;
             }
 
-            .buttons {
-                gap: 10px;
-            }
-
             .btn {
-                padding: 12px 6px;
-                font-size: 7px;
+                padding: 12px 15px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -238,7 +239,6 @@
             <source src="sobre con foto.mp4" type="video/mp4">
             Tu navegador no soporta videos.
         </video>
-        <button class="skip-btn" onclick="finalizarIntro()">SALTAR INTRO ➔</button>
     </div>
 
     <div class="hero">
