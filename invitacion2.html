@@ -97,25 +97,25 @@
 
 .full-width-photo {
     width: 100%;
-    /* Reemplaza height: auto por una altura fija o porcentual del visor para que sea más alta */
-    height: 260px; /* Calibración de altura ideal para destacar el collage en móviles */
-    object-fit: cover; /* Recorta y centra la composición automáticamente sin distorsionar ni pixelar */
-    border-radius: 16px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: 260px; /* Se mantiene tu altura ideal */
+    object-fit: cover;
+    border-radius: 16px;
     display: block;
 
-    /* SOFT GRADIENT EDGES */
-    /* This radial gradient applies a soft alpha mask that makes the 
-       edges transparent and blends smoothly with the background */
-    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); /* */
-    mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%); /* */
-    
-    /* Ensure the mask is centered and fills the dimensions of the photo */
-    -webkit-mask-size: 100% 100%; /* */
-    mask-size: 100% 100%; /* */
-    
-    -webkit-mask-position: center; /* */
-    mask-position: center; /* */
+    /* MÁSCARA DE DIFUMINADO INTENSO (LINEAL EN 4 DIRECCIONES) */
+    -webkit-mask-image: 
+        linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%),
+        linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    mask-image: 
+        linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%),
+        linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+
+    /* Esto hace que ambas máscaras (vertical y horizontal) se fusionen */
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+
+    /* Opcional: Quitamos el box-shadow porque las sombras rígidas anulan el efecto neblina */
+    box-shadow: none; 
 }
 
 /* Ajuste proporcional para asegurar que en pantallas un poco más grandes conserve armonía */
