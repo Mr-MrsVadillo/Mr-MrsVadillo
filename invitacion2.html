@@ -71,15 +71,14 @@
         }
 
         /* Envoltorio general de los contenidos */
-        .content-wrapper {
-            max-width: 500px;
-            width: 100%;
-            padding-top: 55vh;
-            /* Espacio perfecto debajo del cabezote de los nombres */
-            padding-bottom: 60px;
-            position: relative;
-            z-index: 2;
-        }
+      .content-wrapper {
+    max-width: 500px;
+    width: 100%;
+    padding-top: 20px; /* Cambiado de 55vh a 20px para eliminar el gran espacio vacío */
+    padding-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
 
         .main-card-content {
             width: 100%;
@@ -320,15 +319,14 @@
         }
 
         @media (max-width: 480px) {
-            .content-wrapper {
-                padding-top: 55vh;
-            }
-
-            .section-container {
-                max-width: 100%;
-                padding: 0 5px;
-                gap: 12px;
-            }
+         .content-wrapper {
+        padding-top: 15px; /* Cambiado de 55vh a 15px para móviles */
+    }
+    .section-container {
+        max-width: 100%;
+        padding: 0 5px;
+        gap: 12px;
+    }
         }
 
         /* CONTENEDOR DE LA NUEVA IMAGEN DECORATIVA */
