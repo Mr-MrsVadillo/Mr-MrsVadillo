@@ -89,21 +89,29 @@
             align-items: center;
         }
 
-        /* NUEVO CONTENEDOR PARA LA FOTO AL 100% */
-        .full-width-photo-container {
-            width: 100%;
-            padding: 0 10px;
-            margin-bottom: 25px;
-        }
+  /* NUEVO CONTENEDOR PARA LA FOTO AL 100% (ACTUALIZADO) */
+.full-width-photo-container {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 25px;
+}
 
-        .full-width-photo {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 16px; /* Esquinas suavizadas elegantes */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            display: block;
-        }
+.full-width-photo {
+    width: 100%;
+    /* Reemplaza height: auto por una altura fija o porcentual del visor para que sea más alta */
+    height: 260px; /* Calibración de altura ideal para destacar el collage en móviles */
+    object-fit: cover; /* Recorta y centra la composición automáticamente sin distorsionar ni pixelar */
+    border-radius: 16px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: block;
+}
+
+/* Ajuste proporcional para asegurar que en pantallas un poco más grandes conserve armonía */
+@media (min-width: 480px) {
+    .full-width-photo {
+        height: 320px; 
+    }
+}
 
         /* 3. ESTILOS DE TEXTO */
         h2 {
